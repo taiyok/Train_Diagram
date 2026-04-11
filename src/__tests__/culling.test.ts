@@ -67,10 +67,10 @@ describe('getVisibleTrains', () => {
     expect(visible).toHaveLength(0)
   })
 
-  it('フィルターが空のときは種別に関わらず全列車を返す（filterState未定義）', () => {
+  it('フィルターが空のときは種別に関わらず全列車を返す（デフォルト表示）', () => {
     const filter: FilterState = {}
     const visible = getVisibleTrains(trains, viewport, filter)
-    // filterState[typeId] が undefined → !false = true なのでスキップされない
+    // filterState[typeId] が undefined のとき === false は偽 → デフォルトで表示される
     expect(visible.length).toBeGreaterThan(0)
   })
 })

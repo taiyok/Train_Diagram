@@ -5,7 +5,7 @@
  * クラスベースで実装し、DiagramCanvas の useRef で保持する。
  */
 
-import type { Train, ViewportState, FilterState } from '../types/diagram'
+import type { Train, Station, ViewportState, FilterState } from '../types/diagram'
 import { getVisibleTrains } from '../utils/culling'
 import { renderGrid } from './renderGrid'
 import { renderTrainLines } from './renderTrainLines'
@@ -23,6 +23,9 @@ export class DiagramRenderer {
   private filterState: FilterState = {}
   private currentMinutes = 0
   private highlightTypeId: string | null = null
+
+  // update() 時に一度だけ計算して保持（フレームごとの再計算を避ける）
+  private allStations: Station[] = []
 
   // 時刻マーカーの前回更新時刻（毎秒再描画を抑制）
   private lastTimeUpdate = 0
@@ -51,11 +54,23 @@ export class DiagramRenderer {
     currentMinutes: number,
     highlightTypeId: string | null,
   ): void {
+    // 列車データが変わったときだけ駅配列を再計算する（フレームごとの再計算を避ける）
+    if (trains !== this.trains || this.allStations.length === 0) {
+      this.allStations = [
+        ...new Map(
+          trains.flatMap((t) =>
+            t.resolvedStops.map((s) => [s.station.name, s.station])
+          )
+        ).values(),
+      ].sort((a, b) => a.distance - b.distance)
+    }
+
     this.trains = trains
     this.viewport = viewport
     this.filterState = filterState
     this.currentMinutes = currentMinutes
     this.highlightTypeId = highlightTypeId
+
     this.markDirty()
   }
 
@@ -109,16 +124,8 @@ export class DiagramRenderer {
     const timeStart = viewport.panMinutes
     const timeEnd = viewport.panMinutes + canvasWidth / viewport.scaleX
 
-    // 1. グリッド描画
-    const allStations = [
-      ...new Map(
-        this.trains.flatMap((t) =>
-          t.resolvedStops.map((s) => [s.station.name, s.station])
-        )
-      ).values(),
-    ].sort((a, b) => a.distance - b.distance)
-
-    renderGrid(ctx, allStations, viewport, timeStart, timeEnd)
+    // 1. グリッド描画（駅配列は update() 時に計算済み）
+    renderGrid(ctx, this.allStations, viewport, timeStart, timeEnd)
 
     // 2. 現在時刻マーカー
     renderCurrentTime(ctx, this.currentMinutes, viewport)

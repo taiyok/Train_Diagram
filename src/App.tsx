@@ -27,8 +27,10 @@ export default function App() {
 
   // 初回起動時に東海道新幹線のサンプルデータを読み込む
   useEffect(() => {
-    // Canvas サイズが確定する前のデフォルト値で初期化
-    loadData(tokaidoData as DiagramDataRaw, 'tokaido', window.innerWidth - STATION_PANEL_WIDTH, window.innerHeight - TIME_PANEL_HEIGHT - 80)
+    // Canvas サイズが確定する前のデフォルト値で初期化（ResizeObserver がすぐに正確な値に更新する）
+    // TITLE_BAR_HEIGHT: タイトルバーの概算高さ（minHeight: 44px）
+    const TITLE_BAR_HEIGHT = 44
+    loadData(tokaidoData as DiagramDataRaw, 'tokaido', window.innerWidth - STATION_PANEL_WIDTH, window.innerHeight - TIME_PANEL_HEIGHT - TITLE_BAR_HEIGHT)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

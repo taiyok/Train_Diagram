@@ -177,7 +177,7 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
 
       // パン範囲のクランプ（路線範囲外に出ないように）
       const newPanMinutes = Math.max(0, Math.min(1440, vp.panMinutes + deltaMinutes))
-      const newPanKm = Math.max(-20, Math.min(totalKm, vp.panKm + deltaKm))
+      const newPanKm = Math.max(0, Math.min(totalKm, vp.panKm + deltaKm))
 
       return {
         viewport: {
@@ -210,7 +210,7 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
           scaleX: newScaleX,
           scaleY: newScaleY,
           panMinutes: Math.max(0, newPanMinutes),
-          panKm: Math.max(-20, newPanKm),
+          panKm: Math.max(0, newPanKm),
         },
       }
     })

@@ -44,6 +44,9 @@ export function useFileUpload(
           alert(`ファイルの読み込みエラー: ${err instanceof Error ? err.message : String(err)}`)
         }
       }
+      reader.onerror = () => {
+        alert('ファイルの読み込みに失敗しました。ファイルが壊れているか、アクセスが拒否されました。')
+      }
       reader.readAsText(file)
     },
     [loadData, canvasWidth, canvasHeight],

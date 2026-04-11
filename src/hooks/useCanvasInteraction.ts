@@ -29,6 +29,8 @@ interface UseCanvasInteractionReturn {
   onPointerMove: (e: React.PointerEvent<HTMLCanvasElement>) => void
   onPointerUp: (e: React.PointerEvent<HTMLCanvasElement>) => void
   onPointerCancel: (e: React.PointerEvent<HTMLCanvasElement>) => void
+  /** アンマウント時に慣性スクロールを止めるために公開 */
+  stopMomentum: () => void
 }
 
 /**
@@ -72,11 +74,15 @@ export function useCanvasInteraction(
     const { vx, vy } = velocityRef.current
     if (Math.abs(vx) < MIN_MOMENTUM_VELOCITY && Math.abs(vy) < MIN_MOMENTUM_VELOCITY) return
 
-    const viewport = getViewport()
     let currentVx = vx
     let currentVy = vy
+    let lastTime = performance.now()
 
-    const tick = () => {
+    const tick = (now: number) => {
+      // 実フレーム時間（ms）を使って変位を計算（120Hz/60Hz どちらでも正確）
+      const dt = now - lastTime
+      lastTime = now
+
       currentVx *= MOMENTUM_DECAY
       currentVy *= MOMENTUM_DECAY
 
@@ -89,8 +95,9 @@ export function useCanvasInteraction(
       }
 
       // ピクセル変位をワールド座標（分・km）に変換
-      const deltaMinutes = -currentVx / viewport.scaleX
-      const deltaKm = -currentVy / viewport.scaleY
+      const viewport = getViewport()
+      const deltaMinutes = -(currentVx * dt) / viewport.scaleX
+      const deltaKm = -(currentVy * dt) / viewport.scaleY
       panViewport(deltaMinutes, deltaKm)
 
       momentumRafRef.current = requestAnimationFrame(tick)
@@ -192,10 +199,11 @@ export function useCanvasInteraction(
           panViewport(-dx / viewport.scaleX, -dy / viewport.scaleY)
 
           // 速度を記録（慣性スクロール用）
+          // px/ms 単位で保存し、tick() 内で実フレーム時間に基づいて変位を計算する
           const now = performance.now()
           const dt = now - lastMoveTimeRef.current
           if (dt > 0) {
-            velocityRef.current = { vx: dx / dt * 16, vy: dy / dt * 16 }
+            velocityRef.current = { vx: dx / dt, vy: dy / dt }
           }
           lastMoveTimeRef.current = now
         }
@@ -247,5 +255,5 @@ export function useCanvasInteraction(
     [stopMomentum],
   )
 
-  return { onPointerDown, onPointerMove, onPointerUp, onPointerCancel }
+  return { onPointerDown, onPointerMove, onPointerUp, onPointerCancel, stopMomentum }
 }

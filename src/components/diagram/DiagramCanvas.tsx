@@ -108,8 +108,15 @@ export function DiagramCanvas() {
     [trains, viewport, filterState, setPopup],
   )
 
-  const { onPointerDown, onPointerMove, onPointerUp, onPointerCancel } =
+  const { onPointerDown, onPointerMove, onPointerUp, onPointerCancel, stopMomentum } =
     useCanvasInteraction(handleTap)
+
+  // アンマウント時に慣性スクロールのrAFを確実に停止する
+  useEffect(() => {
+    return () => {
+      stopMomentum()
+    }
+  }, [stopMomentum])
 
   const handleClosePopup = useCallback(() => {
     setLocalPopup(null)

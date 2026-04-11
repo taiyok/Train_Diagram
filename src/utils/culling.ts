@@ -20,6 +20,7 @@ export function getVisibleTrains(
 
   for (const train of trains) {
     // フィルターで非表示の種別をスキップ
+    // === false を使うことで、filterState に未登録の種別はデフォルト表示とする
     if (filterState[train.type.id] === false) continue
 
     // 時刻範囲でカリング（列車の運行時刻がビューポートと重ならない場合はスキップ）

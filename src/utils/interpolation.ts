@@ -71,7 +71,12 @@ export function processData(raw: DiagramDataRaw): {
   const trains: Train[] = []
   for (const trainRaw of raw.trains) {
     const type = trainTypes.get(trainRaw.typeId)
-    if (!type) continue // 未知の種別はスキップ
+    if (!type) {
+      console.warn(
+        `[interpolation] 未知の列車種別: "${trainRaw.typeId}" (列車ID: "${trainRaw.id}") — スキップします`,
+      )
+      continue
+    }
 
     const resolvedStops = resolveTrainStops(trainRaw, stations, stationMap)
     if (resolvedStops.length === 0) continue

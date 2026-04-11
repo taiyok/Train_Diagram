@@ -19,7 +19,7 @@ interface TrainPopupProps {
 
 /** ポップアップの固定サイズ */
 const POPUP_WIDTH = 220
-const POPUP_HEIGHT_APPROX = 280
+const POPUP_HEIGHT_APPROX = 350
 
 export function TrainPopup({ info, onClose, containerWidth, containerHeight }: TrainPopupProps) {
   if (!info) return null

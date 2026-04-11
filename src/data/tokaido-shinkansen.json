@@ -1,0 +1,322 @@
+{
+  "lineName": "東海道新幹線",
+  "stations": [
+    { "name": "東京",     "distance": 0 },
+    { "name": "品川",     "distance": 6.8 },
+    { "name": "新横浜",   "distance": 28.8 },
+    { "name": "小田原",   "distance": 83.9 },
+    { "name": "熱海",     "distance": 104.6 },
+    { "name": "三島",     "distance": 120.7 },
+    { "name": "新富士",   "distance": 146.2 },
+    { "name": "静岡",     "distance": 180.2 },
+    { "name": "掛川",     "distance": 229.3 },
+    { "name": "浜松",     "distance": 257.1 },
+    { "name": "豊橋",     "distance": 293.6 },
+    { "name": "三河安城", "distance": 336.3 },
+    { "name": "名古屋",   "distance": 366.0 },
+    { "name": "岐阜羽島", "distance": 395.9 },
+    { "name": "米原",     "distance": 445.9 },
+    { "name": "京都",     "distance": 513.6 },
+    { "name": "新大阪",   "distance": 552.6 }
+  ],
+  "trainTypes": [
+    { "id": "nozomi", "name": "のぞみ", "color": "#E93323", "lineWidth": 3,   "emoji": "🚄" },
+    { "id": "hikari", "name": "ひかり", "color": "#D4850A", "lineWidth": 2.5, "emoji": "🚅" },
+    { "id": "kodama", "name": "こだま", "color": "#3753F6", "lineWidth": 2,   "emoji": "🚃" }
+  ],
+  "trains": [
+    {
+      "id": "nozomi1", "name": "のぞみ1号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "06:00" },
+        { "station": "品川",   "departure": "06:07" },
+        { "station": "新横浜", "departure": "06:18" },
+        { "station": "名古屋", "arrival": "07:34", "departure": "07:36" },
+        { "station": "京都",   "arrival": "08:14", "departure": "08:16" },
+        { "station": "新大阪", "arrival": "08:27" }
+      ]
+    },
+    {
+      "id": "nozomi3", "name": "のぞみ3号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "06:10" },
+        { "station": "品川",   "departure": "06:17" },
+        { "station": "新横浜", "departure": "06:27" },
+        { "station": "名古屋", "arrival": "07:44", "departure": "07:46" },
+        { "station": "京都",   "arrival": "08:24", "departure": "08:26" },
+        { "station": "新大阪", "arrival": "08:37" }
+      ]
+    },
+    {
+      "id": "nozomi5", "name": "のぞみ5号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "06:20" },
+        { "station": "品川",   "departure": "06:27" },
+        { "station": "新横浜", "departure": "06:37" },
+        { "station": "名古屋", "arrival": "07:54", "departure": "07:56" },
+        { "station": "京都",   "arrival": "08:34", "departure": "08:36" },
+        { "station": "新大阪", "arrival": "08:47" }
+      ]
+    },
+    {
+      "id": "nozomi7", "name": "のぞみ7号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "06:33" },
+        { "station": "品川",   "departure": "06:40" },
+        { "station": "新横浜", "departure": "06:50" },
+        { "station": "名古屋", "arrival": "08:07", "departure": "08:09" },
+        { "station": "京都",   "arrival": "08:47", "departure": "08:49" },
+        { "station": "新大阪", "arrival": "09:00" }
+      ]
+    },
+    {
+      "id": "nozomi9", "name": "のぞみ9号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "06:43" },
+        { "station": "品川",   "departure": "06:50" },
+        { "station": "新横浜", "departure": "07:00" },
+        { "station": "名古屋", "arrival": "08:17", "departure": "08:19" },
+        { "station": "京都",   "arrival": "08:57", "departure": "08:59" },
+        { "station": "新大阪", "arrival": "09:10" }
+      ]
+    },
+    {
+      "id": "nozomi11", "name": "のぞみ11号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "07:00" },
+        { "station": "品川",   "departure": "07:07" },
+        { "station": "新横浜", "departure": "07:17" },
+        { "station": "名古屋", "arrival": "08:34", "departure": "08:36" },
+        { "station": "京都",   "arrival": "09:14", "departure": "09:16" },
+        { "station": "新大阪", "arrival": "09:27" }
+      ]
+    },
+    {
+      "id": "nozomi13", "name": "のぞみ13号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "07:10" },
+        { "station": "品川",   "departure": "07:17" },
+        { "station": "新横浜", "departure": "07:27" },
+        { "station": "名古屋", "arrival": "08:44", "departure": "08:46" },
+        { "station": "京都",   "arrival": "09:24", "departure": "09:26" },
+        { "station": "新大阪", "arrival": "09:37" }
+      ]
+    },
+    {
+      "id": "nozomi15", "name": "のぞみ15号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "07:20" },
+        { "station": "品川",   "departure": "07:27" },
+        { "station": "新横浜", "departure": "07:37" },
+        { "station": "名古屋", "arrival": "08:54", "departure": "08:56" },
+        { "station": "京都",   "arrival": "09:34", "departure": "09:36" },
+        { "station": "新大阪", "arrival": "09:47" }
+      ]
+    },
+    {
+      "id": "nozomi17", "name": "のぞみ17号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "07:30" },
+        { "station": "品川",   "departure": "07:37" },
+        { "station": "新横浜", "departure": "07:47" },
+        { "station": "名古屋", "arrival": "09:04", "departure": "09:06" },
+        { "station": "京都",   "arrival": "09:44", "departure": "09:46" },
+        { "station": "新大阪", "arrival": "09:57" }
+      ]
+    },
+    {
+      "id": "nozomi19", "name": "のぞみ19号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "07:43" },
+        { "station": "品川",   "departure": "07:50" },
+        { "station": "新横浜", "departure": "08:00" },
+        { "station": "名古屋", "arrival": "09:17", "departure": "09:19" },
+        { "station": "京都",   "arrival": "09:57", "departure": "09:59" },
+        { "station": "新大阪", "arrival": "10:10" }
+      ]
+    },
+    {
+      "id": "nozomi21", "name": "のぞみ21号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "08:00" },
+        { "station": "品川",   "departure": "08:07" },
+        { "station": "新横浜", "departure": "08:17" },
+        { "station": "名古屋", "arrival": "09:34", "departure": "09:36" },
+        { "station": "京都",   "arrival": "10:14", "departure": "10:16" },
+        { "station": "新大阪", "arrival": "10:27" }
+      ]
+    },
+    {
+      "id": "nozomi23", "name": "のぞみ23号", "typeId": "nozomi", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "08:10" },
+        { "station": "品川",   "departure": "08:17" },
+        { "station": "新横浜", "departure": "08:27" },
+        { "station": "名古屋", "arrival": "09:44", "departure": "09:46" },
+        { "station": "京都",   "arrival": "10:24", "departure": "10:26" },
+        { "station": "新大阪", "arrival": "10:37" }
+      ]
+    },
+    {
+      "id": "nozomi2", "name": "のぞみ2号", "typeId": "nozomi", "direction": "up",
+      "timetable": [
+        { "station": "新大阪", "departure": "06:00" },
+        { "station": "京都",   "arrival": "06:13", "departure": "06:15" },
+        { "station": "名古屋", "arrival": "06:53", "departure": "06:55" },
+        { "station": "新横浜", "arrival": "08:12", "departure": "08:14" },
+        { "station": "品川",   "arrival": "08:24", "departure": "08:26" },
+        { "station": "東京",   "arrival": "08:33" }
+      ]
+    },
+    {
+      "id": "nozomi4", "name": "のぞみ4号", "typeId": "nozomi", "direction": "up",
+      "timetable": [
+        { "station": "新大阪", "departure": "06:30" },
+        { "station": "京都",   "arrival": "06:43", "departure": "06:45" },
+        { "station": "名古屋", "arrival": "07:23", "departure": "07:25" },
+        { "station": "新横浜", "arrival": "08:42", "departure": "08:44" },
+        { "station": "品川",   "arrival": "08:54", "departure": "08:56" },
+        { "station": "東京",   "arrival": "09:03" }
+      ]
+    },
+    {
+      "id": "nozomi6", "name": "のぞみ6号", "typeId": "nozomi", "direction": "up",
+      "timetable": [
+        { "station": "新大阪", "departure": "07:00" },
+        { "station": "京都",   "arrival": "07:13", "departure": "07:15" },
+        { "station": "名古屋", "arrival": "07:53", "departure": "07:55" },
+        { "station": "新横浜", "arrival": "09:12", "departure": "09:14" },
+        { "station": "品川",   "arrival": "09:24", "departure": "09:26" },
+        { "station": "東京",   "arrival": "09:33" }
+      ]
+    },
+    {
+      "id": "nozomi8", "name": "のぞみ8号", "typeId": "nozomi", "direction": "up",
+      "timetable": [
+        { "station": "新大阪", "departure": "07:30" },
+        { "station": "京都",   "arrival": "07:43", "departure": "07:45" },
+        { "station": "名古屋", "arrival": "08:23", "departure": "08:25" },
+        { "station": "新横浜", "arrival": "09:42", "departure": "09:44" },
+        { "station": "品川",   "arrival": "09:54", "departure": "09:56" },
+        { "station": "東京",   "arrival": "10:03" }
+      ]
+    },
+    {
+      "id": "hikari501", "name": "ひかり501号", "typeId": "hikari", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "06:03" },
+        { "station": "品川",   "departure": "06:10" },
+        { "station": "新横浜", "departure": "06:21" },
+        { "station": "小田原", "arrival": "06:44", "departure": "06:46" },
+        { "station": "熱海",   "arrival": "06:59", "departure": "07:01" },
+        { "station": "三島",   "arrival": "07:10", "departure": "07:12" },
+        { "station": "新富士", "arrival": "07:22", "departure": "07:24" },
+        { "station": "静岡",   "arrival": "07:47", "departure": "07:49" },
+        { "station": "掛川",   "arrival": "08:13", "departure": "08:15" },
+        { "station": "浜松",   "arrival": "08:29", "departure": "08:31" },
+        { "station": "豊橋",   "arrival": "08:48", "departure": "08:50" },
+        { "station": "名古屋", "arrival": "09:19", "departure": "09:21" },
+        { "station": "京都",   "arrival": "10:08", "departure": "10:10" },
+        { "station": "新大阪", "arrival": "10:24" }
+      ]
+    },
+    {
+      "id": "hikari503", "name": "ひかり503号", "typeId": "hikari", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "07:33" },
+        { "station": "品川",   "departure": "07:40" },
+        { "station": "新横浜", "departure": "07:51" },
+        { "station": "静岡",   "arrival": "09:00", "departure": "09:02" },
+        { "station": "浜松",   "arrival": "09:27", "departure": "09:29" },
+        { "station": "名古屋", "arrival": "10:03", "departure": "10:05" },
+        { "station": "京都",   "arrival": "10:45", "departure": "10:47" },
+        { "station": "新大阪", "arrival": "11:00" }
+      ]
+    },
+    {
+      "id": "hikari502", "name": "ひかり502号", "typeId": "hikari", "direction": "up",
+      "timetable": [
+        { "station": "新大阪", "departure": "06:00" },
+        { "station": "京都",   "arrival": "06:16", "departure": "06:18" },
+        { "station": "名古屋", "arrival": "07:07", "departure": "07:09" },
+        { "station": "豊橋",   "arrival": "07:43", "departure": "07:45" },
+        { "station": "浜松",   "arrival": "08:04", "departure": "08:06" },
+        { "station": "掛川",   "arrival": "08:20", "departure": "08:22" },
+        { "station": "静岡",   "arrival": "08:44", "departure": "08:46" },
+        { "station": "新富士", "arrival": "09:08", "departure": "09:10" },
+        { "station": "三島",   "arrival": "09:21", "departure": "09:23" },
+        { "station": "熱海",   "arrival": "09:32", "departure": "09:34" },
+        { "station": "小田原", "arrival": "09:46", "departure": "09:48" },
+        { "station": "新横浜", "arrival": "10:10", "departure": "10:12" },
+        { "station": "品川",   "arrival": "10:22", "departure": "10:24" },
+        { "station": "東京",   "arrival": "10:30" }
+      ]
+    },
+    {
+      "id": "kodama631", "name": "こだま631号", "typeId": "kodama", "direction": "down",
+      "timetable": [
+        { "station": "東京",     "departure": "06:00" },
+        { "station": "品川",     "arrival": "06:08",  "departure": "06:10" },
+        { "station": "新横浜",   "arrival": "06:22",  "departure": "06:27" },
+        { "station": "小田原",   "arrival": "06:50",  "departure": "06:52" },
+        { "station": "熱海",     "arrival": "07:04",  "departure": "07:06" },
+        { "station": "三島",     "arrival": "07:16",  "departure": "07:18" },
+        { "station": "新富士",   "arrival": "07:28",  "departure": "07:30" },
+        { "station": "静岡",     "arrival": "07:51",  "departure": "07:53" },
+        { "station": "掛川",     "arrival": "08:16",  "departure": "08:18" },
+        { "station": "浜松",     "arrival": "08:33",  "departure": "08:35" },
+        { "station": "豊橋",     "arrival": "08:53",  "departure": "08:55" },
+        { "station": "三河安城", "arrival": "09:09",  "departure": "09:11" },
+        { "station": "名古屋",   "arrival": "09:22",  "departure": "09:24" },
+        { "station": "岐阜羽島", "arrival": "09:36",  "departure": "09:38" },
+        { "station": "米原",     "arrival": "09:56",  "departure": "09:58" },
+        { "station": "京都",     "arrival": "10:24",  "departure": "10:26" },
+        { "station": "新大阪",   "arrival": "10:45" }
+      ]
+    },
+    {
+      "id": "kodama633", "name": "こだま633号", "typeId": "kodama", "direction": "down",
+      "timetable": [
+        { "station": "東京",     "departure": "07:00" },
+        { "station": "品川",     "arrival": "07:08",  "departure": "07:10" },
+        { "station": "新横浜",   "arrival": "07:22",  "departure": "07:27" },
+        { "station": "小田原",   "arrival": "07:50",  "departure": "07:52" },
+        { "station": "熱海",     "arrival": "08:04",  "departure": "08:06" },
+        { "station": "三島",     "arrival": "08:16",  "departure": "08:18" },
+        { "station": "新富士",   "arrival": "08:28",  "departure": "08:30" },
+        { "station": "静岡",     "arrival": "08:51",  "departure": "08:53" },
+        { "station": "掛川",     "arrival": "09:16",  "departure": "09:18" },
+        { "station": "浜松",     "arrival": "09:33",  "departure": "09:35" },
+        { "station": "豊橋",     "arrival": "09:53",  "departure": "09:55" },
+        { "station": "三河安城", "arrival": "10:09",  "departure": "10:11" },
+        { "station": "名古屋",   "arrival": "10:22",  "departure": "10:24" },
+        { "station": "岐阜羽島", "arrival": "10:36",  "departure": "10:38" },
+        { "station": "米原",     "arrival": "10:56",  "departure": "10:58" },
+        { "station": "京都",     "arrival": "11:24",  "departure": "11:26" },
+        { "station": "新大阪",   "arrival": "11:45" }
+      ]
+    },
+    {
+      "id": "kodama632", "name": "こだま632号", "typeId": "kodama", "direction": "up",
+      "timetable": [
+        { "station": "新大阪",   "departure": "06:00" },
+        { "station": "京都",     "arrival": "06:19",  "departure": "06:21" },
+        { "station": "米原",     "arrival": "06:47",  "departure": "06:49" },
+        { "station": "岐阜羽島", "arrival": "07:08",  "departure": "07:10" },
+        { "station": "名古屋",   "arrival": "07:21",  "departure": "07:23" },
+        { "station": "三河安城", "arrival": "07:34",  "departure": "07:36" },
+        { "station": "豊橋",     "arrival": "07:49",  "departure": "07:51" },
+        { "station": "浜松",     "arrival": "08:10",  "departure": "08:12" },
+        { "station": "掛川",     "arrival": "08:26",  "departure": "08:28" },
+        { "station": "静岡",     "arrival": "08:51",  "departure": "08:53" },
+        { "station": "新富士",   "arrival": "09:16",  "departure": "09:18" },
+        { "station": "三島",     "arrival": "09:27",  "departure": "09:29" },
+        { "station": "熱海",     "arrival": "09:38",  "departure": "09:40" },
+        { "station": "小田原",   "arrival": "09:52",  "departure": "09:54" },
+        { "station": "新横浜",   "arrival": "10:17",  "departure": "10:19" },
+        { "station": "品川",     "arrival": "10:30",  "departure": "10:32" },
+        { "station": "東京",     "arrival": "10:39" }
+      ]
+    }
+  ]
+}

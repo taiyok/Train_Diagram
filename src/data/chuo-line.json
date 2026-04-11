@@ -1,0 +1,211 @@
+{
+  "lineName": "JR中央線快速",
+  "stations": [
+    { "name": "東京",     "distance": 0 },
+    { "name": "神田",     "distance": 1.3 },
+    { "name": "御茶ノ水", "distance": 3.2 },
+    { "name": "四ツ谷",   "distance": 6.3 },
+    { "name": "新宿",     "distance": 10.3 },
+    { "name": "中野",     "distance": 13.3 },
+    { "name": "荻窪",     "distance": 17.8 },
+    { "name": "吉祥寺",   "distance": 22.5 },
+    { "name": "三鷹",     "distance": 24.6 },
+    { "name": "武蔵境",   "distance": 27.4 },
+    { "name": "東小金井", "distance": 29.1 },
+    { "name": "武蔵小金井","distance": 30.7 },
+    { "name": "国分寺",   "distance": 33.4 },
+    { "name": "西国分寺", "distance": 34.8 },
+    { "name": "国立",     "distance": 36.9 },
+    { "name": "立川",     "distance": 39.3 },
+    { "name": "日野",     "distance": 42.4 },
+    { "name": "豊田",     "distance": 45.0 },
+    { "name": "八王子",   "distance": 47.4 },
+    { "name": "高尾",     "distance": 53.1 }
+  ],
+  "trainTypes": [
+    { "id": "chuo-express",   "name": "中央特快", "color": "#E93323", "lineWidth": 2.5, "emoji": "🚇" },
+    { "id": "chuo-rapid",     "name": "快速",     "color": "#2ECC71", "lineWidth": 2,   "emoji": "🚋" },
+    { "id": "chuo-local",     "name": "各駅停車", "color": "#3753F6", "lineWidth": 1.5, "emoji": "🚃" }
+  ],
+  "trains": [
+    {
+      "id": "ce1", "name": "中央特快1", "typeId": "chuo-express", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "06:00" },
+        { "station": "神田",   "departure": "06:03" },
+        { "station": "御茶ノ水","departure": "06:06" },
+        { "station": "新宿",   "arrival": "06:16", "departure": "06:17" },
+        { "station": "吉祥寺", "arrival": "06:29", "departure": "06:30" },
+        { "station": "三鷹",   "arrival": "06:33", "departure": "06:34" },
+        { "station": "国分寺", "arrival": "06:42", "departure": "06:43" },
+        { "station": "立川",   "arrival": "06:50", "departure": "06:51" },
+        { "station": "八王子", "arrival": "07:03", "departure": "07:04" },
+        { "station": "高尾",   "arrival": "07:13" }
+      ]
+    },
+    {
+      "id": "ce2", "name": "中央特快2", "typeId": "chuo-express", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "06:30" },
+        { "station": "神田",   "departure": "06:33" },
+        { "station": "御茶ノ水","departure": "06:36" },
+        { "station": "新宿",   "arrival": "06:46", "departure": "06:47" },
+        { "station": "吉祥寺", "arrival": "06:59", "departure": "07:00" },
+        { "station": "三鷹",   "arrival": "07:03", "departure": "07:04" },
+        { "station": "国分寺", "arrival": "07:12", "departure": "07:13" },
+        { "station": "立川",   "arrival": "07:20", "departure": "07:21" },
+        { "station": "八王子", "arrival": "07:33", "departure": "07:34" },
+        { "station": "高尾",   "arrival": "07:43" }
+      ]
+    },
+    {
+      "id": "ce3", "name": "中央特快3", "typeId": "chuo-express", "direction": "down",
+      "timetable": [
+        { "station": "東京",   "departure": "07:00" },
+        { "station": "神田",   "departure": "07:03" },
+        { "station": "御茶ノ水","departure": "07:06" },
+        { "station": "新宿",   "arrival": "07:16", "departure": "07:17" },
+        { "station": "吉祥寺", "arrival": "07:29", "departure": "07:30" },
+        { "station": "三鷹",   "arrival": "07:33", "departure": "07:34" },
+        { "station": "国分寺", "arrival": "07:42", "departure": "07:43" },
+        { "station": "立川",   "arrival": "07:50", "departure": "07:51" },
+        { "station": "八王子", "arrival": "08:03", "departure": "08:04" },
+        { "station": "高尾",   "arrival": "08:13" }
+      ]
+    },
+    {
+      "id": "cr1", "name": "快速1", "typeId": "chuo-rapid", "direction": "down",
+      "timetable": [
+        { "station": "東京",     "departure": "06:08" },
+        { "station": "神田",     "departure": "06:11" },
+        { "station": "御茶ノ水", "departure": "06:14" },
+        { "station": "四ツ谷",   "arrival": "06:20", "departure": "06:21" },
+        { "station": "新宿",     "arrival": "06:27", "departure": "06:28" },
+        { "station": "中野",     "arrival": "06:33", "departure": "06:34" },
+        { "station": "荻窪",     "arrival": "06:40", "departure": "06:41" },
+        { "station": "吉祥寺",   "arrival": "06:46", "departure": "06:47" },
+        { "station": "三鷹",     "arrival": "06:50", "departure": "06:51" },
+        { "station": "武蔵境",   "arrival": "06:55", "departure": "06:56" },
+        { "station": "武蔵小金井","arrival": "07:00", "departure": "07:01" },
+        { "station": "国分寺",   "arrival": "07:05", "departure": "07:06" },
+        { "station": "国立",     "arrival": "07:09", "departure": "07:10" },
+        { "station": "立川",     "arrival": "07:14", "departure": "07:15" },
+        { "station": "日野",     "arrival": "07:19", "departure": "07:20" },
+        { "station": "豊田",     "arrival": "07:23", "departure": "07:24" },
+        { "station": "八王子",   "arrival": "07:28", "departure": "07:29" },
+        { "station": "高尾",     "arrival": "07:38" }
+      ]
+    },
+    {
+      "id": "cr2", "name": "快速2", "typeId": "chuo-rapid", "direction": "down",
+      "timetable": [
+        { "station": "東京",     "departure": "06:38" },
+        { "station": "神田",     "departure": "06:41" },
+        { "station": "御茶ノ水", "departure": "06:44" },
+        { "station": "四ツ谷",   "arrival": "06:50", "departure": "06:51" },
+        { "station": "新宿",     "arrival": "06:57", "departure": "06:58" },
+        { "station": "中野",     "arrival": "07:03", "departure": "07:04" },
+        { "station": "荻窪",     "arrival": "07:10", "departure": "07:11" },
+        { "station": "吉祥寺",   "arrival": "07:16", "departure": "07:17" },
+        { "station": "三鷹",     "arrival": "07:20", "departure": "07:21" },
+        { "station": "武蔵境",   "arrival": "07:25", "departure": "07:26" },
+        { "station": "武蔵小金井","arrival": "07:30", "departure": "07:31" },
+        { "station": "国分寺",   "arrival": "07:35", "departure": "07:36" },
+        { "station": "国立",     "arrival": "07:39", "departure": "07:40" },
+        { "station": "立川",     "arrival": "07:44", "departure": "07:45" },
+        { "station": "日野",     "arrival": "07:49", "departure": "07:50" },
+        { "station": "豊田",     "arrival": "07:53", "departure": "07:54" },
+        { "station": "八王子",   "arrival": "07:58", "departure": "07:59" },
+        { "station": "高尾",     "arrival": "08:08" }
+      ]
+    },
+    {
+      "id": "cl1", "name": "各停1", "typeId": "chuo-local", "direction": "down",
+      "timetable": [
+        { "station": "東京",      "departure": "06:04" },
+        { "station": "神田",      "arrival": "06:07",  "departure": "06:08" },
+        { "station": "御茶ノ水",  "arrival": "06:11",  "departure": "06:12" },
+        { "station": "四ツ谷",    "arrival": "06:18",  "departure": "06:19" },
+        { "station": "新宿",      "arrival": "06:25",  "departure": "06:26" },
+        { "station": "中野",      "arrival": "06:31",  "departure": "06:32" },
+        { "station": "荻窪",      "arrival": "06:39",  "departure": "06:40" },
+        { "station": "吉祥寺",    "arrival": "06:44",  "departure": "06:45" },
+        { "station": "三鷹",      "arrival": "06:48",  "departure": "06:49" },
+        { "station": "武蔵境",    "arrival": "06:53",  "departure": "06:54" },
+        { "station": "東小金井",  "arrival": "06:57",  "departure": "06:58" },
+        { "station": "武蔵小金井","arrival": "07:00",  "departure": "07:01" },
+        { "station": "国分寺",    "arrival": "07:05",  "departure": "07:06" },
+        { "station": "西国分寺",  "arrival": "07:08",  "departure": "07:09" },
+        { "station": "国立",      "arrival": "07:12",  "departure": "07:13" },
+        { "station": "立川",      "arrival": "07:17",  "departure": "07:18" },
+        { "station": "日野",      "arrival": "07:23",  "departure": "07:24" },
+        { "station": "豊田",      "arrival": "07:27",  "departure": "07:28" },
+        { "station": "八王子",    "arrival": "07:33",  "departure": "07:34" },
+        { "station": "高尾",      "arrival": "07:44" }
+      ]
+    },
+    {
+      "id": "cl2", "name": "各停2", "typeId": "chuo-local", "direction": "down",
+      "timetable": [
+        { "station": "東京",      "departure": "06:34" },
+        { "station": "神田",      "arrival": "06:37",  "departure": "06:38" },
+        { "station": "御茶ノ水",  "arrival": "06:41",  "departure": "06:42" },
+        { "station": "四ツ谷",    "arrival": "06:48",  "departure": "06:49" },
+        { "station": "新宿",      "arrival": "06:55",  "departure": "06:56" },
+        { "station": "中野",      "arrival": "07:01",  "departure": "07:02" },
+        { "station": "荻窪",      "arrival": "07:09",  "departure": "07:10" },
+        { "station": "吉祥寺",    "arrival": "07:14",  "departure": "07:15" },
+        { "station": "三鷹",      "arrival": "07:18",  "departure": "07:19" },
+        { "station": "武蔵境",    "arrival": "07:23",  "departure": "07:24" },
+        { "station": "東小金井",  "arrival": "07:27",  "departure": "07:28" },
+        { "station": "武蔵小金井","arrival": "07:30",  "departure": "07:31" },
+        { "station": "国分寺",    "arrival": "07:35",  "departure": "07:36" },
+        { "station": "西国分寺",  "arrival": "07:38",  "departure": "07:39" },
+        { "station": "国立",      "arrival": "07:42",  "departure": "07:43" },
+        { "station": "立川",      "arrival": "07:47",  "departure": "07:48" },
+        { "station": "日野",      "arrival": "07:53",  "departure": "07:54" },
+        { "station": "豊田",      "arrival": "07:57",  "departure": "07:58" },
+        { "station": "八王子",    "arrival": "08:03",  "departure": "08:04" },
+        { "station": "高尾",      "arrival": "08:14" }
+      ]
+    },
+    {
+      "id": "ce4", "name": "中央特快4", "typeId": "chuo-express", "direction": "up",
+      "timetable": [
+        { "station": "高尾",   "departure": "06:10" },
+        { "station": "八王子", "arrival": "06:18", "departure": "06:19" },
+        { "station": "立川",   "arrival": "06:29", "departure": "06:30" },
+        { "station": "国分寺", "arrival": "06:37", "departure": "06:38" },
+        { "station": "三鷹",   "arrival": "06:46", "departure": "06:47" },
+        { "station": "吉祥寺", "arrival": "06:50", "departure": "06:51" },
+        { "station": "新宿",   "arrival": "07:03", "departure": "07:04" },
+        { "station": "御茶ノ水","arrival": "07:10", "departure": "07:11" },
+        { "station": "神田",   "arrival": "07:14", "departure": "07:15" },
+        { "station": "東京",   "arrival": "07:18" }
+      ]
+    },
+    {
+      "id": "cr3", "name": "快速3", "typeId": "chuo-rapid", "direction": "up",
+      "timetable": [
+        { "station": "高尾",      "departure": "06:05" },
+        { "station": "八王子",    "arrival": "06:14",  "departure": "06:15" },
+        { "station": "豊田",      "arrival": "06:20",  "departure": "06:21" },
+        { "station": "日野",      "arrival": "06:24",  "departure": "06:25" },
+        { "station": "立川",      "arrival": "06:29",  "departure": "06:30" },
+        { "station": "国立",      "arrival": "06:34",  "departure": "06:35" },
+        { "station": "国分寺",    "arrival": "06:38",  "departure": "06:39" },
+        { "station": "武蔵小金井","arrival": "06:43",  "departure": "06:44" },
+        { "station": "武蔵境",    "arrival": "06:48",  "departure": "06:49" },
+        { "station": "三鷹",      "arrival": "06:53",  "departure": "06:54" },
+        { "station": "吉祥寺",    "arrival": "06:57",  "departure": "06:58" },
+        { "station": "荻窪",      "arrival": "07:03",  "departure": "07:04" },
+        { "station": "中野",      "arrival": "07:09",  "departure": "07:10" },
+        { "station": "新宿",      "arrival": "07:16",  "departure": "07:17" },
+        { "station": "四ツ谷",    "arrival": "07:23",  "departure": "07:24" },
+        { "station": "御茶ノ水",  "arrival": "07:30",  "departure": "07:31" },
+        { "station": "神田",      "arrival": "07:34",  "departure": "07:35" },
+        { "station": "東京",      "arrival": "07:38" }
+      ]
+    }
+  ]
+}

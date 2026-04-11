@@ -1,0 +1,43 @@
+/* Google Fonts 読み込み（@importは最初に記述） */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* 列車種別カラー */
+  --color-train-red:    #E93323;
+  --color-train-yellow: #EFC51E;
+  --color-train-blue:   #3753F6;
+  --color-train-green:  #2ECC71;
+  --color-train-orange: #F39C12;
+  --color-train-purple: #9B59B6;
+
+  /* フォント */
+  --font-family-display: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  --font-family-body:    "Noto Sans JP", sans-serif;
+
+  /* 背景色 */
+  --color-bg-main:    #FFFBF0;
+  --color-bg-station: #E8F4FD;
+  --color-bg-filter:  #FFF9E6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  background-color: #FFFBF0;
+  overflow: hidden;
+}
+
+/* ダークモード無効化 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #FFFBF0;
+    color: #1A1A2E;
+  }
+}

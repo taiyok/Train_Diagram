@@ -1,6 +1,17 @@
 /**
- * 池袋4路線の全日ダイヤデータ生成スクリプト
+ * サンプルダイヤデータ生成スクリプト
  * node scripts/generate-ikebukuro-data.mjs で実行
+ *
+ * ■ データ収録方針（通過列車仕様）
+ * 各路線データには「停車列車」だけでなく、「経路上を通過するすべての列車」を収録する。
+ * 例：
+ *  - 板橋・十条で見ている人は湘南新宿ラインが通過するのを目撃できる
+ *  - 日暮里で見ている人は東北新幹線が通過するのを目撃できる
+ *  - 池袋で見ている人はTRAIN SUITE 四季島が東北新幹線路線上で通過するのを目撃できる
+ *
+ * JSONの stations[] に掲載された駅のうち、列車の timetable[] に含まれない駅は
+ * アプリ側で補間（interpolation）され「通過スジ」として描画される（isScheduledStop=false）。
+ * 停車駅のみ掲載すればよく、通過駅は列車データに記載不要。
  */
 import fs from 'fs'
 import path from 'path'
@@ -310,9 +321,21 @@ const saikyoStations = [
 ]
 
 const saikyoTypes = [
-  { id: 'commuter-rapid', name: '通勤快速', color: '#E56B10', lineWidth: 2.5, emoji: '🚇' },
-  { id: 'rapid',          name: '快速',     color: '#2E7D32', lineWidth: 2.0, emoji: '🚋' },
-  { id: 'local',          name: '各駅停車', color: '#1565C0', lineWidth: 1.5, emoji: '🚃' },
+  { id: 'shonan-shinjuku', name: '湘南新宿ライン', color: '#007A3D', lineWidth: 2.5, emoji: '🚅' },
+  { id: 'commuter-rapid',  name: '通勤快速',       color: '#E56B10', lineWidth: 2.5, emoji: '🚇' },
+  { id: 'rapid',           name: '快速',           color: '#2E7D32', lineWidth: 2.0, emoji: '🚋' },
+  { id: 'local',           name: '各駅停車',       color: '#1565C0', lineWidth: 1.5, emoji: '🚃' },
+]
+
+// 湘南新宿ライン（埼京線と同じ軌道を大崎〜大宮で共用）
+// 板橋・十条・北赤羽・戸田公園 等 中間の各駅は通過扱い → 補間で通過スジ表示
+const shonanDown = [
+  ['大崎',0],['恵比寿',4],['渋谷',8],['新宿',16],['池袋',26],
+  ['赤羽',37],['武蔵浦和',55],['大宮',66],
+]
+const shonanUp = [
+  ['大宮',0],['武蔵浦和',11],['赤羽',29],
+  ['池袋',40],['新宿',48],['渋谷',56],['恵比寿',60],['大崎',64],
 ]
 
 const saikyoCRDown = [
@@ -351,6 +374,11 @@ const saikyoLocalUp = [
 ]
 
 const saikyoTrains = [
+  // 湘南新宿ライン（大崎〜大宮 埼京線軌道共用・通過駅補間表示）
+  ...makeTrains('sn-down', '湘南新宿ライン', 'shonan-shinjuku', 'down',
+    range(6*60+5, 22*60, 30), shonanDown),
+  ...makeTrains('sn-up', '湘南新宿ライン', 'shonan-shinjuku', 'up',
+    range(6*60+0, 22*60, 30), shonanUp),
   ...makeTrains('cr-down', '通勤快速', 'commuter-rapid', 'down',
     range(6*60, 22*60, 30), saikyoCRDown),
   ...makeTrains('cr-up', '通勤快速', 'commuter-rapid', 'up',
@@ -421,6 +449,98 @@ const yurakuchoTrains = [
     range(6*60, 22*60, 5), yurakuchoLocalUp),
 ]
 
+// ─── 東北新幹線 ──────────────────────────────────────────
+
+// 日暮里は新幹線の停車駅ではないが車窓から見えるポイントとして掲載
+const tohokuStations = [
+  { name: '東京',     distance: 0.0 },
+  { name: '上野',     distance: 3.6 },
+  { name: '日暮里',   distance: 6.2 },   // 新幹線が通過して見えるポイント（停車なし）
+  { name: '大宮',     distance: 26.7 },
+  { name: '小山',     distance: 80.6 },
+  { name: '宇都宮',   distance: 109.5 },
+  { name: '那須塩原', distance: 157.8 },
+  { name: '新白河',   distance: 185.4 },
+  { name: '郡山',     distance: 226.7 },
+  { name: '福島',     distance: 272.8 },
+  { name: '白石蔵王', distance: 303.6 },
+  { name: '仙台',     distance: 351.8 },
+]
+
+const tohokuTypes = [
+  { id: 'hayabusa',   name: 'はやぶさ',           color: '#C8202D', lineWidth: 3.5, emoji: '🚄' },
+  { id: 'yamabiko',   name: 'やまびこ',           color: '#006400', lineWidth: 2.5, emoji: '🚅' },
+  { id: 'nasuno',     name: 'なすの',             color: '#1565C0', lineWidth: 2.0, emoji: '🚃' },
+  { id: 'shikishima', name: 'TRAIN SUITE 四季島', color: '#1C3144', lineWidth: 3.5, emoji: '✨' },
+]
+
+// はやぶさ下り（東京→仙台）速達型
+// 日暮里・小山・宇都宮・那須塩原・新白河・郡山・福島・白石蔵王 は通過（補間で表示）
+const hayabusaDown = [
+  ['東京',0], ['上野',4], ['大宮',15], ['仙台',95],
+]
+// はやぶさ上り
+const hayabusaUp = [
+  ['仙台',0], ['大宮',80], ['上野',95], ['東京',99],
+]
+
+// やまびこ下り（東京→仙台）主要駅停車
+// 日暮里・新白河・白石蔵王 は通過
+const yamabikoDown = [
+  ['東京',0], ['上野',4], ['大宮',18], ['小山',46],
+  ['宇都宮',59], ['那須塩原',86], ['郡山',114], ['福島',136], ['仙台',163],
+]
+// やまびこ上り
+const yamabikoUp = [
+  ['仙台',0], ['福島',27], ['郡山',49], ['那須塩原',77],
+  ['宇都宮',104], ['小山',117], ['大宮',145], ['上野',159], ['東京',163],
+]
+
+// なすの下り（東京→那須塩原）各駅型（東北新幹線内では比較的こまめに停車）
+// 日暮里・新白河 は通過
+const nasunoDown = [
+  ['東京',0], ['上野',4], ['大宮',18], ['小山',48],
+  ['宇都宮',63], ['那須塩原',93],
+]
+// なすの上り
+const nasunoUp = [
+  ['那須塩原',0], ['宇都宮',30], ['小山',45],
+  ['大宮',75], ['上野',89], ['東京',93],
+]
+
+// TRAIN SUITE 四季島（上野発、クルーズトレイン）
+// 上野を出発し仙台方面へ。全区間にわたって通過駅を補間表示
+const shikishimaDown = [
+  ['上野',0], ['仙台',125],
+]
+const shikishimaUp = [
+  ['仙台',0], ['上野',125],
+]
+
+const tohokuTrains = [
+  // はやぶさ下り（終日）
+  ...makeTrains('hb-down', 'はやぶさ', 'hayabusa', 'down',
+    range(6*60+4, 20*60, 30), hayabusaDown),
+  // はやぶさ上り（終日）
+  ...makeTrains('hb-up', 'はやぶさ', 'hayabusa', 'up',
+    range(6*60+13, 20*60, 30), hayabusaUp),
+  // やまびこ下り（終日）
+  ...makeTrains('ym-down', 'やまびこ', 'yamabiko', 'down',
+    range(6*60+28, 20*60, 60), yamabikoDown),
+  // やまびこ上り（終日）
+  ...makeTrains('ym-up', 'やまびこ', 'yamabiko', 'up',
+    range(6*60+0, 20*60, 60), yamabikoUp),
+  // なすの下り（終日）
+  ...makeTrains('ns-down', 'なすの', 'nasuno', 'down',
+    range(6*60+44, 21*60, 60), nasunoDown),
+  // なすの上り（終日）
+  ...makeTrains('ns-up', 'なすの', 'nasuno', 'up',
+    range(6*60+30, 21*60, 60), nasunoUp),
+  // TRAIN SUITE 四季島（特別列車・1日1往復）
+  makeTrain('shikishima-down-1', 'TRAIN SUITE 四季島', 'shikishima', 'down', 7*60+20, shikishimaDown),
+  makeTrain('shikishima-up-1',   'TRAIN SUITE 四季島', 'shikishima', 'up',   15*60+30, shikishimaUp),
+]
+
 // ─── JSON書き出し ────────────────────────────────────────
 
 const files = [
@@ -439,6 +559,10 @@ const files = [
   {
     path: path.join(dataDir, 'metro-yurakucho-line.json'),
     data: { lineName: '東京メトロ有楽町線', stations: yurakuchoStations, trainTypes: yurakuchoTypes, trains: yurakuchoTrains },
+  },
+  {
+    path: path.join(dataDir, 'tohoku-shinkansen.json'),
+    data: { lineName: '東北新幹線', stations: tohokuStations, trainTypes: tohokuTypes, trains: tohokuTrains },
   },
 ]
 

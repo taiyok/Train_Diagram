@@ -1,0 +1,508 @@
+{
+  "lineName": "東武東上線",
+  "stations": [
+    { "name": "池袋",     "distance": 0.0 },
+    { "name": "北池袋",   "distance": 1.3 },
+    { "name": "下板橋",   "distance": 2.1 },
+    { "name": "大山",     "distance": 3.3 },
+    { "name": "中板橋",   "distance": 4.4 },
+    { "name": "ときわ台", "distance": 5.6 },
+    { "name": "上板橋",   "distance": 6.9 },
+    { "name": "東武練馬", "distance": 8.2 },
+    { "name": "下赤塚",   "distance": 9.2 },
+    { "name": "成増",     "distance": 10.9 },
+    { "name": "和光市",   "distance": 13.3 },
+    { "name": "朝霞",     "distance": 15.4 },
+    { "name": "朝霞台",   "distance": 17.4 },
+    { "name": "志木",     "distance": 18.7 },
+    { "name": "柳瀬川",   "distance": 20.6 },
+    { "name": "みずほ台", "distance": 22.1 },
+    { "name": "鶴瀬",     "distance": 24.2 },
+    { "name": "ふじみ野", "distance": 26.1 },
+    { "name": "上福岡",   "distance": 28.9 },
+    { "name": "新河岸",   "distance": 32.7 },
+    { "name": "川越",     "distance": 36.1 },
+    { "name": "川越市",   "distance": 37.7 },
+    { "name": "霞ヶ関",   "distance": 42.1 },
+    { "name": "鶴ヶ島",   "distance": 45.3 },
+    { "name": "若葉",     "distance": 48.5 },
+    { "name": "坂戸",     "distance": 51.2 },
+    { "name": "北坂戸",   "distance": 53.8 },
+    { "name": "高坂",     "distance": 56.6 },
+    { "name": "東松山",   "distance": 59.4 },
+    { "name": "森林公園", "distance": 63.3 },
+    { "name": "つきのわ", "distance": 67.5 },
+    { "name": "武蔵嵐山", "distance": 71.4 },
+    { "name": "小川町",   "distance": 75.6 }
+  ],
+  "trainTypes": [
+    { "id": "tj-liner",      "name": "TJライナー", "color": "#E07B00", "lineWidth": 3.0, "emoji": "🚃" },
+    { "id": "rapid-express", "name": "快速急行",   "color": "#1A237E", "lineWidth": 2.5, "emoji": "🚇" },
+    { "id": "express",       "name": "急行",       "color": "#C62828", "lineWidth": 2.5, "emoji": "🚋" },
+    { "id": "semi-express",  "name": "準急",       "color": "#2E7D32", "lineWidth": 2.0, "emoji": "🚃" },
+    { "id": "local",         "name": "普通",       "color": "#1565C0", "lineWidth": 1.5, "emoji": "🚃" }
+  ],
+  "trains": [
+    {
+      "id": "tj-up-1", "name": "TJライナー1号", "typeId": "tj-liner", "direction": "up",
+      "timetable": [
+        { "station": "小川町",   "departure": "05:55" },
+        { "station": "森林公園", "arrival": "06:08", "departure": "06:09" },
+        { "station": "東松山",   "arrival": "06:13", "departure": "06:14" },
+        { "station": "坂戸",     "arrival": "06:20", "departure": "06:21" },
+        { "station": "川越市",   "arrival": "06:28", "departure": "06:29" },
+        { "station": "川越",     "arrival": "06:32", "departure": "06:33" },
+        { "station": "志木",     "arrival": "06:44", "departure": "06:45" },
+        { "station": "朝霞台",   "arrival": "06:48", "departure": "06:49" },
+        { "station": "池袋",     "arrival": "07:05" }
+      ]
+    },
+    {
+      "id": "tj-up-2", "name": "TJライナー3号", "typeId": "tj-liner", "direction": "up",
+      "timetable": [
+        { "station": "小川町",   "departure": "06:35" },
+        { "station": "森林公園", "arrival": "06:48", "departure": "06:49" },
+        { "station": "東松山",   "arrival": "06:53", "departure": "06:54" },
+        { "station": "坂戸",     "arrival": "07:00", "departure": "07:01" },
+        { "station": "川越市",   "arrival": "07:08", "departure": "07:09" },
+        { "station": "川越",     "arrival": "07:12", "departure": "07:13" },
+        { "station": "志木",     "arrival": "07:24", "departure": "07:25" },
+        { "station": "朝霞台",   "arrival": "07:28", "departure": "07:29" },
+        { "station": "池袋",     "arrival": "07:45" }
+      ]
+    },
+    {
+      "id": "fe-down-1", "name": "快速急行1", "typeId": "rapid-express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "06:10" },
+        { "station": "和光市",   "arrival": "06:22", "departure": "06:23" },
+        { "station": "朝霞台",   "arrival": "06:28", "departure": "06:29" },
+        { "station": "志木",     "arrival": "06:32", "departure": "06:33" },
+        { "station": "ふじみ野", "arrival": "06:42", "departure": "06:43" },
+        { "station": "川越",     "arrival": "06:53", "departure": "06:54" },
+        { "station": "川越市",   "arrival": "06:57", "departure": "06:58" },
+        { "station": "霞ヶ関",   "arrival": "07:05", "departure": "07:06" },
+        { "station": "鶴ヶ島",   "arrival": "07:10", "departure": "07:11" },
+        { "station": "坂戸",     "arrival": "07:15", "departure": "07:16" },
+        { "station": "高坂",     "arrival": "07:22", "departure": "07:23" },
+        { "station": "東松山",   "arrival": "07:27", "departure": "07:28" },
+        { "station": "森林公園", "arrival": "07:34", "departure": "07:35" },
+        { "station": "小川町",   "arrival": "07:48" }
+      ]
+    },
+    {
+      "id": "fe-down-2", "name": "快速急行2", "typeId": "rapid-express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "07:10" },
+        { "station": "和光市",   "arrival": "07:22", "departure": "07:23" },
+        { "station": "朝霞台",   "arrival": "07:28", "departure": "07:29" },
+        { "station": "志木",     "arrival": "07:32", "departure": "07:33" },
+        { "station": "ふじみ野", "arrival": "07:42", "departure": "07:43" },
+        { "station": "川越",     "arrival": "07:53", "departure": "07:54" },
+        { "station": "川越市",   "arrival": "07:57", "departure": "07:58" },
+        { "station": "霞ヶ関",   "arrival": "08:05", "departure": "08:06" },
+        { "station": "鶴ヶ島",   "arrival": "08:10", "departure": "08:11" },
+        { "station": "坂戸",     "arrival": "08:15", "departure": "08:16" },
+        { "station": "高坂",     "arrival": "08:22", "departure": "08:23" },
+        { "station": "東松山",   "arrival": "08:27", "departure": "08:28" },
+        { "station": "森林公園", "arrival": "08:34", "departure": "08:35" },
+        { "station": "小川町",   "arrival": "08:48" }
+      ]
+    },
+    {
+      "id": "fe-up-1", "name": "快速急行3", "typeId": "rapid-express", "direction": "up",
+      "timetable": [
+        { "station": "小川町",   "departure": "06:05" },
+        { "station": "森林公園", "arrival": "06:18", "departure": "06:19" },
+        { "station": "東松山",   "arrival": "06:24", "departure": "06:25" },
+        { "station": "高坂",     "arrival": "06:30", "departure": "06:31" },
+        { "station": "坂戸",     "arrival": "06:35", "departure": "06:36" },
+        { "station": "鶴ヶ島",   "arrival": "06:40", "departure": "06:41" },
+        { "station": "霞ヶ関",   "arrival": "06:45", "departure": "06:46" },
+        { "station": "川越市",   "arrival": "06:53", "departure": "06:54" },
+        { "station": "川越",     "arrival": "06:57", "departure": "06:58" },
+        { "station": "ふじみ野", "arrival": "07:08", "departure": "07:09" },
+        { "station": "志木",     "arrival": "07:18", "departure": "07:19" },
+        { "station": "朝霞台",   "arrival": "07:22", "departure": "07:23" },
+        { "station": "和光市",   "arrival": "07:28", "departure": "07:29" },
+        { "station": "池袋",     "arrival": "07:41" }
+      ]
+    },
+    {
+      "id": "fe-up-2", "name": "快速急行4", "typeId": "rapid-express", "direction": "up",
+      "timetable": [
+        { "station": "小川町",   "departure": "07:05" },
+        { "station": "森林公園", "arrival": "07:18", "departure": "07:19" },
+        { "station": "東松山",   "arrival": "07:24", "departure": "07:25" },
+        { "station": "高坂",     "arrival": "07:30", "departure": "07:31" },
+        { "station": "坂戸",     "arrival": "07:35", "departure": "07:36" },
+        { "station": "鶴ヶ島",   "arrival": "07:40", "departure": "07:41" },
+        { "station": "霞ヶ関",   "arrival": "07:45", "departure": "07:46" },
+        { "station": "川越市",   "arrival": "07:53", "departure": "07:54" },
+        { "station": "川越",     "arrival": "07:57", "departure": "07:58" },
+        { "station": "ふじみ野", "arrival": "08:08", "departure": "08:09" },
+        { "station": "志木",     "arrival": "08:18", "departure": "08:19" },
+        { "station": "朝霞台",   "arrival": "08:22", "departure": "08:23" },
+        { "station": "和光市",   "arrival": "08:28", "departure": "08:29" },
+        { "station": "池袋",     "arrival": "08:41" }
+      ]
+    },
+    {
+      "id": "e-down-1", "name": "急行1", "typeId": "express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "06:00" },
+        { "station": "成増",     "arrival": "06:14", "departure": "06:15" },
+        { "station": "和光市",   "arrival": "06:19", "departure": "06:20" },
+        { "station": "朝霞台",   "arrival": "06:26", "departure": "06:27" },
+        { "station": "志木",     "arrival": "06:30", "departure": "06:31" },
+        { "station": "ふじみ野", "arrival": "06:40", "departure": "06:41" },
+        { "station": "川越",     "arrival": "06:51", "departure": "06:52" },
+        { "station": "川越市",   "arrival": "06:55", "departure": "06:56" },
+        { "station": "霞ヶ関",   "arrival": "07:03", "departure": "07:04" },
+        { "station": "鶴ヶ島",   "arrival": "07:08", "departure": "07:09" },
+        { "station": "坂戸",     "arrival": "07:13", "departure": "07:14" },
+        { "station": "高坂",     "arrival": "07:20", "departure": "07:21" },
+        { "station": "東松山",   "arrival": "07:25", "departure": "07:26" },
+        { "station": "森林公園", "arrival": "07:32", "departure": "07:33" },
+        { "station": "小川町",   "arrival": "07:46" }
+      ]
+    },
+    {
+      "id": "e-down-2", "name": "急行2", "typeId": "express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "06:30" },
+        { "station": "成増",     "arrival": "06:44", "departure": "06:45" },
+        { "station": "和光市",   "arrival": "06:49", "departure": "06:50" },
+        { "station": "朝霞台",   "arrival": "06:56", "departure": "06:57" },
+        { "station": "志木",     "arrival": "07:00", "departure": "07:01" },
+        { "station": "ふじみ野", "arrival": "07:10", "departure": "07:11" },
+        { "station": "川越",     "arrival": "07:21", "departure": "07:22" },
+        { "station": "川越市",   "arrival": "07:25", "departure": "07:26" },
+        { "station": "霞ヶ関",   "arrival": "07:33", "departure": "07:34" },
+        { "station": "鶴ヶ島",   "arrival": "07:38", "departure": "07:39" },
+        { "station": "坂戸",     "arrival": "07:43", "departure": "07:44" },
+        { "station": "高坂",     "arrival": "07:50", "departure": "07:51" },
+        { "station": "東松山",   "arrival": "07:55", "departure": "07:56" },
+        { "station": "森林公園", "arrival": "08:02", "departure": "08:03" },
+        { "station": "小川町",   "arrival": "08:16" }
+      ]
+    },
+    {
+      "id": "e-down-3", "name": "急行3", "typeId": "express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "07:00" },
+        { "station": "成増",     "arrival": "07:14", "departure": "07:15" },
+        { "station": "和光市",   "arrival": "07:19", "departure": "07:20" },
+        { "station": "朝霞台",   "arrival": "07:26", "departure": "07:27" },
+        { "station": "志木",     "arrival": "07:30", "departure": "07:31" },
+        { "station": "ふじみ野", "arrival": "07:40", "departure": "07:41" },
+        { "station": "川越",     "arrival": "07:51", "departure": "07:52" },
+        { "station": "川越市",   "arrival": "07:55", "departure": "07:56" },
+        { "station": "霞ヶ関",   "arrival": "08:03", "departure": "08:04" },
+        { "station": "鶴ヶ島",   "arrival": "08:08", "departure": "08:09" },
+        { "station": "坂戸",     "arrival": "08:13", "departure": "08:14" },
+        { "station": "高坂",     "arrival": "08:20", "departure": "08:21" },
+        { "station": "東松山",   "arrival": "08:25", "departure": "08:26" },
+        { "station": "森林公園", "arrival": "08:32", "departure": "08:33" },
+        { "station": "小川町",   "arrival": "08:46" }
+      ]
+    },
+    {
+      "id": "e-down-4", "name": "急行4", "typeId": "express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "07:30" },
+        { "station": "成増",     "arrival": "07:44", "departure": "07:45" },
+        { "station": "和光市",   "arrival": "07:49", "departure": "07:50" },
+        { "station": "朝霞台",   "arrival": "07:56", "departure": "07:57" },
+        { "station": "志木",     "arrival": "08:00", "departure": "08:01" },
+        { "station": "ふじみ野", "arrival": "08:10", "departure": "08:11" },
+        { "station": "川越",     "arrival": "08:21", "departure": "08:22" },
+        { "station": "川越市",   "arrival": "08:25", "departure": "08:26" },
+        { "station": "霞ヶ関",   "arrival": "08:33", "departure": "08:34" },
+        { "station": "鶴ヶ島",   "arrival": "08:38", "departure": "08:39" },
+        { "station": "坂戸",     "arrival": "08:43", "departure": "08:44" },
+        { "station": "高坂",     "arrival": "08:50", "departure": "08:51" },
+        { "station": "東松山",   "arrival": "08:55", "departure": "08:56" },
+        { "station": "森林公園", "arrival": "09:02", "departure": "09:03" },
+        { "station": "小川町",   "arrival": "09:16" }
+      ]
+    },
+    {
+      "id": "e-up-1", "name": "急行5", "typeId": "express", "direction": "up",
+      "timetable": [
+        { "station": "小川町",   "departure": "05:50" },
+        { "station": "森林公園", "arrival": "06:03", "departure": "06:04" },
+        { "station": "東松山",   "arrival": "06:08", "departure": "06:09" },
+        { "station": "高坂",     "arrival": "06:14", "departure": "06:15" },
+        { "station": "坂戸",     "arrival": "06:19", "departure": "06:20" },
+        { "station": "鶴ヶ島",   "arrival": "06:24", "departure": "06:25" },
+        { "station": "霞ヶ関",   "arrival": "06:29", "departure": "06:30" },
+        { "station": "川越市",   "arrival": "06:37", "departure": "06:38" },
+        { "station": "川越",     "arrival": "06:41", "departure": "06:42" },
+        { "station": "ふじみ野", "arrival": "06:52", "departure": "06:53" },
+        { "station": "志木",     "arrival": "07:02", "departure": "07:03" },
+        { "station": "朝霞台",   "arrival": "07:06", "departure": "07:07" },
+        { "station": "和光市",   "arrival": "07:13", "departure": "07:14" },
+        { "station": "成増",     "arrival": "07:18", "departure": "07:19" },
+        { "station": "池袋",     "arrival": "07:33" }
+      ]
+    },
+    {
+      "id": "e-up-2", "name": "急行6", "typeId": "express", "direction": "up",
+      "timetable": [
+        { "station": "小川町",   "departure": "06:20" },
+        { "station": "森林公園", "arrival": "06:33", "departure": "06:34" },
+        { "station": "東松山",   "arrival": "06:38", "departure": "06:39" },
+        { "station": "高坂",     "arrival": "06:44", "departure": "06:45" },
+        { "station": "坂戸",     "arrival": "06:49", "departure": "06:50" },
+        { "station": "鶴ヶ島",   "arrival": "06:54", "departure": "06:55" },
+        { "station": "霞ヶ関",   "arrival": "06:59", "departure": "07:00" },
+        { "station": "川越市",   "arrival": "07:07", "departure": "07:08" },
+        { "station": "川越",     "arrival": "07:11", "departure": "07:12" },
+        { "station": "ふじみ野", "arrival": "07:22", "departure": "07:23" },
+        { "station": "志木",     "arrival": "07:32", "departure": "07:33" },
+        { "station": "朝霞台",   "arrival": "07:36", "departure": "07:37" },
+        { "station": "和光市",   "arrival": "07:43", "departure": "07:44" },
+        { "station": "成増",     "arrival": "07:48", "departure": "07:49" },
+        { "station": "池袋",     "arrival": "08:03" }
+      ]
+    },
+    {
+      "id": "e-up-3", "name": "急行7", "typeId": "express", "direction": "up",
+      "timetable": [
+        { "station": "小川町",   "departure": "06:50" },
+        { "station": "森林公園", "arrival": "07:03", "departure": "07:04" },
+        { "station": "東松山",   "arrival": "07:08", "departure": "07:09" },
+        { "station": "高坂",     "arrival": "07:14", "departure": "07:15" },
+        { "station": "坂戸",     "arrival": "07:19", "departure": "07:20" },
+        { "station": "鶴ヶ島",   "arrival": "07:24", "departure": "07:25" },
+        { "station": "霞ヶ関",   "arrival": "07:29", "departure": "07:30" },
+        { "station": "川越市",   "arrival": "07:37", "departure": "07:38" },
+        { "station": "川越",     "arrival": "07:41", "departure": "07:42" },
+        { "station": "ふじみ野", "arrival": "07:52", "departure": "07:53" },
+        { "station": "志木",     "arrival": "08:02", "departure": "08:03" },
+        { "station": "朝霞台",   "arrival": "08:06", "departure": "08:07" },
+        { "station": "和光市",   "arrival": "08:13", "departure": "08:14" },
+        { "station": "成増",     "arrival": "08:18", "departure": "08:19" },
+        { "station": "池袋",     "arrival": "08:33" }
+      ]
+    },
+    {
+      "id": "se-down-1", "name": "準急1", "typeId": "semi-express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "06:04" },
+        { "station": "北池袋",   "arrival": "06:06", "departure": "06:07" },
+        { "station": "下板橋",   "arrival": "06:09", "departure": "06:10" },
+        { "station": "大山",     "arrival": "06:12", "departure": "06:13" },
+        { "station": "中板橋",   "arrival": "06:15", "departure": "06:16" },
+        { "station": "ときわ台", "arrival": "06:18", "departure": "06:19" },
+        { "station": "上板橋",   "arrival": "06:21", "departure": "06:22" },
+        { "station": "東武練馬", "arrival": "06:24", "departure": "06:25" },
+        { "station": "下赤塚",   "arrival": "06:27", "departure": "06:28" },
+        { "station": "成増",     "arrival": "06:30", "departure": "06:31" },
+        { "station": "和光市",   "arrival": "06:35", "departure": "06:36" },
+        { "station": "朝霞",     "arrival": "06:39", "departure": "06:40" },
+        { "station": "朝霞台",   "arrival": "06:43", "departure": "06:44" },
+        { "station": "志木",     "arrival": "06:47", "departure": "06:48" },
+        { "station": "柳瀬川",   "arrival": "06:51", "departure": "06:52" },
+        { "station": "みずほ台", "arrival": "06:55", "departure": "06:56" },
+        { "station": "鶴瀬",     "arrival": "06:59", "departure": "07:00" },
+        { "station": "ふじみ野", "arrival": "07:03", "departure": "07:04" },
+        { "station": "上福岡",   "arrival": "07:10", "departure": "07:11" },
+        { "station": "新河岸",   "arrival": "07:19", "departure": "07:20" },
+        { "station": "川越",     "arrival": "07:26" }
+      ]
+    },
+    {
+      "id": "se-down-2", "name": "準急2", "typeId": "semi-express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "06:39" },
+        { "station": "北池袋",   "arrival": "06:41", "departure": "06:42" },
+        { "station": "下板橋",   "arrival": "06:44", "departure": "06:45" },
+        { "station": "大山",     "arrival": "06:47", "departure": "06:48" },
+        { "station": "中板橋",   "arrival": "06:50", "departure": "06:51" },
+        { "station": "ときわ台", "arrival": "06:53", "departure": "06:54" },
+        { "station": "上板橋",   "arrival": "06:56", "departure": "06:57" },
+        { "station": "東武練馬", "arrival": "06:59", "departure": "07:00" },
+        { "station": "下赤塚",   "arrival": "07:02", "departure": "07:03" },
+        { "station": "成増",     "arrival": "07:05", "departure": "07:06" },
+        { "station": "和光市",   "arrival": "07:10", "departure": "07:11" },
+        { "station": "朝霞",     "arrival": "07:14", "departure": "07:15" },
+        { "station": "朝霞台",   "arrival": "07:18", "departure": "07:19" },
+        { "station": "志木",     "arrival": "07:22", "departure": "07:23" },
+        { "station": "柳瀬川",   "arrival": "07:26", "departure": "07:27" },
+        { "station": "みずほ台", "arrival": "07:30", "departure": "07:31" },
+        { "station": "鶴瀬",     "arrival": "07:34", "departure": "07:35" },
+        { "station": "ふじみ野", "arrival": "07:38", "departure": "07:39" },
+        { "station": "上福岡",   "arrival": "07:45", "departure": "07:46" },
+        { "station": "新河岸",   "arrival": "07:54", "departure": "07:55" },
+        { "station": "川越",     "arrival": "08:01" }
+      ]
+    },
+    {
+      "id": "se-down-3", "name": "準急3", "typeId": "semi-express", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "07:14" },
+        { "station": "北池袋",   "arrival": "07:16", "departure": "07:17" },
+        { "station": "下板橋",   "arrival": "07:19", "departure": "07:20" },
+        { "station": "大山",     "arrival": "07:22", "departure": "07:23" },
+        { "station": "中板橋",   "arrival": "07:25", "departure": "07:26" },
+        { "station": "ときわ台", "arrival": "07:28", "departure": "07:29" },
+        { "station": "上板橋",   "arrival": "07:31", "departure": "07:32" },
+        { "station": "東武練馬", "arrival": "07:34", "departure": "07:35" },
+        { "station": "下赤塚",   "arrival": "07:37", "departure": "07:38" },
+        { "station": "成増",     "arrival": "07:40", "departure": "07:41" },
+        { "station": "和光市",   "arrival": "07:45", "departure": "07:46" },
+        { "station": "朝霞",     "arrival": "07:49", "departure": "07:50" },
+        { "station": "朝霞台",   "arrival": "07:53", "departure": "07:54" },
+        { "station": "志木",     "arrival": "07:57", "departure": "07:58" },
+        { "station": "柳瀬川",   "arrival": "08:01", "departure": "08:02" },
+        { "station": "みずほ台", "arrival": "08:05", "departure": "08:06" },
+        { "station": "鶴瀬",     "arrival": "08:09", "departure": "08:10" },
+        { "station": "ふじみ野", "arrival": "08:13", "departure": "08:14" },
+        { "station": "上福岡",   "arrival": "08:20", "departure": "08:21" },
+        { "station": "新河岸",   "arrival": "08:29", "departure": "08:30" },
+        { "station": "川越",     "arrival": "08:36" }
+      ]
+    },
+    {
+      "id": "se-up-1", "name": "準急4", "typeId": "semi-express", "direction": "up",
+      "timetable": [
+        { "station": "川越",     "departure": "06:10" },
+        { "station": "新河岸",   "arrival": "06:16", "departure": "06:17" },
+        { "station": "上福岡",   "arrival": "06:25", "departure": "06:26" },
+        { "station": "ふじみ野", "arrival": "06:32", "departure": "06:33" },
+        { "station": "鶴瀬",     "arrival": "06:36", "departure": "06:37" },
+        { "station": "みずほ台", "arrival": "06:40", "departure": "06:41" },
+        { "station": "柳瀬川",   "arrival": "06:44", "departure": "06:45" },
+        { "station": "志木",     "arrival": "06:48", "departure": "06:49" },
+        { "station": "朝霞台",   "arrival": "06:52", "departure": "06:53" },
+        { "station": "朝霞",     "arrival": "06:56", "departure": "06:57" },
+        { "station": "和光市",   "arrival": "07:00", "departure": "07:01" },
+        { "station": "成増",     "arrival": "07:05", "departure": "07:06" },
+        { "station": "下赤塚",   "arrival": "07:09", "departure": "07:10" },
+        { "station": "東武練馬", "arrival": "07:12", "departure": "07:13" },
+        { "station": "上板橋",   "arrival": "07:15", "departure": "07:16" },
+        { "station": "ときわ台", "arrival": "07:18", "departure": "07:19" },
+        { "station": "中板橋",   "arrival": "07:21", "departure": "07:22" },
+        { "station": "大山",     "arrival": "07:24", "departure": "07:25" },
+        { "station": "下板橋",   "arrival": "07:27", "departure": "07:28" },
+        { "station": "北池袋",   "arrival": "07:30", "departure": "07:31" },
+        { "station": "池袋",     "arrival": "07:33" }
+      ]
+    },
+    {
+      "id": "se-up-2", "name": "準急5", "typeId": "semi-express", "direction": "up",
+      "timetable": [
+        { "station": "川越",     "departure": "06:45" },
+        { "station": "新河岸",   "arrival": "06:51", "departure": "06:52" },
+        { "station": "上福岡",   "arrival": "07:00", "departure": "07:01" },
+        { "station": "ふじみ野", "arrival": "07:07", "departure": "07:08" },
+        { "station": "鶴瀬",     "arrival": "07:11", "departure": "07:12" },
+        { "station": "みずほ台", "arrival": "07:15", "departure": "07:16" },
+        { "station": "柳瀬川",   "arrival": "07:19", "departure": "07:20" },
+        { "station": "志木",     "arrival": "07:23", "departure": "07:24" },
+        { "station": "朝霞台",   "arrival": "07:27", "departure": "07:28" },
+        { "station": "朝霞",     "arrival": "07:31", "departure": "07:32" },
+        { "station": "和光市",   "arrival": "07:35", "departure": "07:36" },
+        { "station": "成増",     "arrival": "07:40", "departure": "07:41" },
+        { "station": "下赤塚",   "arrival": "07:44", "departure": "07:45" },
+        { "station": "東武練馬", "arrival": "07:47", "departure": "07:48" },
+        { "station": "上板橋",   "arrival": "07:50", "departure": "07:51" },
+        { "station": "ときわ台", "arrival": "07:53", "departure": "07:54" },
+        { "station": "中板橋",   "arrival": "07:56", "departure": "07:57" },
+        { "station": "大山",     "arrival": "07:59", "departure": "08:00" },
+        { "station": "下板橋",   "arrival": "08:02", "departure": "08:03" },
+        { "station": "北池袋",   "arrival": "08:05", "departure": "08:06" },
+        { "station": "池袋",     "arrival": "08:08" }
+      ]
+    },
+    {
+      "id": "l-down-1", "name": "普通1", "typeId": "local", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "06:08" },
+        { "station": "北池袋",   "arrival": "06:10", "departure": "06:11" },
+        { "station": "下板橋",   "arrival": "06:13", "departure": "06:14" },
+        { "station": "大山",     "arrival": "06:16", "departure": "06:17" },
+        { "station": "中板橋",   "arrival": "06:19", "departure": "06:20" },
+        { "station": "ときわ台", "arrival": "06:22", "departure": "06:23" },
+        { "station": "上板橋",   "arrival": "06:25", "departure": "06:26" },
+        { "station": "東武練馬", "arrival": "06:28", "departure": "06:29" },
+        { "station": "下赤塚",   "arrival": "06:31", "departure": "06:32" },
+        { "station": "成増",     "arrival": "06:35" }
+      ]
+    },
+    {
+      "id": "l-down-2", "name": "普通2", "typeId": "local", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "06:55" },
+        { "station": "北池袋",   "arrival": "06:57", "departure": "06:58" },
+        { "station": "下板橋",   "arrival": "07:00", "departure": "07:01" },
+        { "station": "大山",     "arrival": "07:03", "departure": "07:04" },
+        { "station": "中板橋",   "arrival": "07:06", "departure": "07:07" },
+        { "station": "ときわ台", "arrival": "07:09", "departure": "07:10" },
+        { "station": "上板橋",   "arrival": "07:12", "departure": "07:13" },
+        { "station": "東武練馬", "arrival": "07:15", "departure": "07:16" },
+        { "station": "下赤塚",   "arrival": "07:18", "departure": "07:19" },
+        { "station": "成増",     "arrival": "07:22", "departure": "07:23" },
+        { "station": "和光市",   "arrival": "07:29", "departure": "07:30" },
+        { "station": "朝霞",     "arrival": "07:34", "departure": "07:35" },
+        { "station": "朝霞台",   "arrival": "07:38", "departure": "07:39" },
+        { "station": "志木",     "arrival": "07:42" }
+      ]
+    },
+    {
+      "id": "l-down-3", "name": "普通3", "typeId": "local", "direction": "down",
+      "timetable": [
+        { "station": "池袋",     "departure": "07:45" },
+        { "station": "北池袋",   "arrival": "07:47", "departure": "07:48" },
+        { "station": "下板橋",   "arrival": "07:50", "departure": "07:51" },
+        { "station": "大山",     "arrival": "07:53", "departure": "07:54" },
+        { "station": "中板橋",   "arrival": "07:56", "departure": "07:57" },
+        { "station": "ときわ台", "arrival": "07:59", "departure": "08:00" },
+        { "station": "上板橋",   "arrival": "08:02", "departure": "08:03" },
+        { "station": "東武練馬", "arrival": "08:05", "departure": "08:06" },
+        { "station": "下赤塚",   "arrival": "08:08", "departure": "08:09" },
+        { "station": "成増",     "arrival": "08:12", "departure": "08:13" },
+        { "station": "和光市",   "arrival": "08:19", "departure": "08:20" },
+        { "station": "朝霞",     "arrival": "08:24", "departure": "08:25" },
+        { "station": "朝霞台",   "arrival": "08:28", "departure": "08:29" },
+        { "station": "志木",     "arrival": "08:32" }
+      ]
+    },
+    {
+      "id": "l-up-1", "name": "普通4", "typeId": "local", "direction": "up",
+      "timetable": [
+        { "station": "成増",     "departure": "06:20" },
+        { "station": "下赤塚",   "arrival": "06:24", "departure": "06:25" },
+        { "station": "東武練馬", "arrival": "06:28", "departure": "06:29" },
+        { "station": "上板橋",   "arrival": "06:31", "departure": "06:32" },
+        { "station": "ときわ台", "arrival": "06:34", "departure": "06:35" },
+        { "station": "中板橋",   "arrival": "06:37", "departure": "06:38" },
+        { "station": "大山",     "arrival": "06:40", "departure": "06:41" },
+        { "station": "下板橋",   "arrival": "06:43", "departure": "06:44" },
+        { "station": "北池袋",   "arrival": "06:46", "departure": "06:47" },
+        { "station": "池袋",     "arrival": "06:49" }
+      ]
+    },
+    {
+      "id": "l-up-2", "name": "普通5", "typeId": "local", "direction": "up",
+      "timetable": [
+        { "station": "志木",     "departure": "07:15" },
+        { "station": "朝霞台",   "arrival": "07:18", "departure": "07:19" },
+        { "station": "朝霞",     "arrival": "07:22", "departure": "07:23" },
+        { "station": "和光市",   "arrival": "07:27", "departure": "07:28" },
+        { "station": "成増",     "arrival": "07:34", "departure": "07:35" },
+        { "station": "下赤塚",   "arrival": "07:39", "departure": "07:40" },
+        { "station": "東武練馬", "arrival": "07:43", "departure": "07:44" },
+        { "station": "上板橋",   "arrival": "07:46", "departure": "07:47" },
+        { "station": "ときわ台", "arrival": "07:49", "departure": "07:50" },
+        { "station": "中板橋",   "arrival": "07:52", "departure": "07:53" },
+        { "station": "大山",     "arrival": "07:55", "departure": "07:56" },
+        { "station": "下板橋",   "arrival": "07:58", "departure": "07:59" },
+        { "station": "北池袋",   "arrival": "08:01", "departure": "08:02" },
+        { "station": "池袋",     "arrival": "08:04" }
+      ]
+    }
+  ]
+}

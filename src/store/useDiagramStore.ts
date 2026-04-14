@@ -42,6 +42,9 @@ interface DiagramState {
   /** タップ時のポップアップ情報 */
   popupInfo: PopupInfo | null
 
+  /** 選択中の主軸駅（縦方向の中心に表示・強調） */
+  anchorStation: Station | null
+
   /** データ読み込み中フラグ */
   isLoading: boolean
 
@@ -76,6 +79,12 @@ interface DiagramActions {
   /** タップポップアップをセットする */
   setPopup: (info: PopupInfo | null) => void
 
+  /**
+   * 主軸駅を選択し、その駅が画面の縦中心に来るようビューポートをパンする。
+   * null を渡すと選択解除。
+   */
+  setAnchorStation: (station: Station | null) => void
+
   /** ビューポートを現在時刻中心の3時間窓にリセットする */
   resetViewport: () => void
 
@@ -108,6 +117,7 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
   },
   filterState: {},
   popupInfo: null,
+  anchorStation: null,
   isLoading: false,
   errorMessage: null,
 
@@ -155,6 +165,7 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
         viewport,
         filterState,
         popupInfo: null,
+        anchorStation: null,
         errorMessage: null,
       })
     } catch (err) {
@@ -241,6 +252,28 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
 
   setPopup: (info) => {
     set({ popupInfo: info })
+  },
+
+  setAnchorStation: (station) => {
+    set((state) => {
+      if (!station) return { anchorStation: null }
+
+      const { viewport, stations } = state
+      const totalKm =
+        stations.length > 0 ? Math.max(...stations.map((s) => s.distance)) : 600
+
+      // 選択駅が縦方向の中心に来るようにパン
+      const visibleKm = viewport.canvasHeight / viewport.scaleY
+      const newPanKm = Math.max(
+        0,
+        Math.min(totalKm - visibleKm, station.distance - visibleKm / 2),
+      )
+
+      return {
+        anchorStation: station,
+        viewport: { ...viewport, panKm: newPanKm },
+      }
+    })
   },
 
   resetViewport: () => {

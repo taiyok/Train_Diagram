@@ -12,10 +12,12 @@ import { useFileUpload } from '../../hooks/useFileUpload'
 import type { DatasetId, DiagramDataRaw } from '../../types/diagram'
 import tokaidoData from '../../data/tokaido-shinkansen.json'
 import tohokuData from '../../data/tohoku-shinkansen.json'
+import yamanoteData from '../../data/jr-yamanote-line.json'
 import chuoData from '../../data/chuo-line.json'
 import tobuTojoData from '../../data/tobu-tojo-line.json'
 import seibuIkebukuroData from '../../data/seibu-ikebukuro-line.json'
 import jrSaikyoData from '../../data/jr-saikyo-line.json'
+import fukutoshinData from '../../data/metro-fukutoshin-line.json'
 import metroYurakuchoData from '../../data/metro-yurakucho-line.json'
 
 export function FilterBar() {
@@ -40,10 +42,12 @@ export function FilterBar() {
       const dataMap: Record<string, unknown> = {
         tokaido: tokaidoData,
         'tohoku-shinkansen': tohokuData,
+        yamanote: yamanoteData,
         chuo: chuoData,
         'tobu-tojo': tobuTojoData,
         'seibu-ikebukuro': seibuIkebukuroData,
         'jr-saikyo': jrSaikyoData,
+        fukutoshin: fukutoshinData,
         'metro-yurakucho': metroYurakuchoData,
       }
       const data = dataMap[id] ?? tokaidoData

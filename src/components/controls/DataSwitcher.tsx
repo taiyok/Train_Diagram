@@ -13,11 +13,13 @@ interface DataSwitcherProps {
 const DATASETS: { id: DatasetId; label: string; emoji: string }[] = [
   { id: 'tokaido',           label: '東海道新幹線',       emoji: '🚄' },
   { id: 'tohoku-shinkansen', label: '東北新幹線',         emoji: '🚄' },
+  { id: 'yamanote',          label: 'JR山手線',           emoji: '🔄' },
   { id: 'chuo',              label: 'JR中央線',           emoji: '🚇' },
+  { id: 'jr-saikyo',         label: 'JR埼京線',           emoji: '🚃' },
   { id: 'tobu-tojo',         label: '東武東上線',         emoji: '🚃' },
   { id: 'seibu-ikebukuro',   label: '西武池袋線',         emoji: '🚋' },
-  { id: 'jr-saikyo',         label: 'JR埼京線',           emoji: '🚃' },
-  { id: 'metro-yurakucho',   label: '東京メトロ有楽町線', emoji: '🚇' },
+  { id: 'fukutoshin',        label: '副都心線',           emoji: '🚇' },
+  { id: 'metro-yurakucho',   label: '有楽町線',           emoji: '🚇' },
 ]
 
 export function DataSwitcher({ activeDataset, onChange }: DataSwitcherProps) {

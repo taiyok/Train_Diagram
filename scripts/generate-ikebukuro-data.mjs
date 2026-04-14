@@ -541,6 +541,157 @@ const tohokuTrains = [
   makeTrain('shikishima-up-1',   'TRAIN SUITE 四季島', 'shikishima', 'up',   15*60+30, shikishimaUp),
 ]
 
+// ─── 東京メトロ副都心線 ──────────────────────────────────
+// 池袋は中間停車駅（地下ホーム）
+// S-TRAIN（西武⇔東急の有料特急）が通過ポイントとして見られる
+
+const fukutoshinStations = [
+  { name: '和光市',       distance: 0.0 },
+  { name: '地下鉄成増',   distance: 2.4 },
+  { name: '地下鉄赤塚',   distance: 4.3 },
+  { name: '平和台',       distance: 5.8 },
+  { name: '氷川台',       distance: 7.0 },
+  { name: '小竹向原',     distance: 9.0 },
+  { name: '千川',         distance: 10.4 },
+  { name: '要町',         distance: 11.7 },
+  { name: '池袋',         distance: 13.0 },
+  { name: '雑司が谷',     distance: 14.4 },
+  { name: '西早稲田',     distance: 15.8 },
+  { name: '東新宿',       distance: 17.5 },
+  { name: '新宿三丁目',   distance: 19.0 },
+  { name: '北参道',       distance: 20.5 },
+  { name: '明治神宮前',   distance: 22.0 },
+  { name: '渋谷',         distance: 23.8 },
+]
+
+const fukutoshinTypes = [
+  // S-TRAINは西武線から小竹向原経由で副都心線に入る有料特急
+  // 副都心線内停車駅が少なく、池袋も通過ポイントとして見やすい
+  { id: 's-train', name: 'S-TRAIN',   color: '#1C3A6E', lineWidth: 3.0, emoji: '🚆' },
+  { id: 'express', name: '急行',      color: '#8B0041', lineWidth: 2.5, emoji: '🚇' },
+  { id: 'local',   name: '各駅停車',  color: '#553B8E', lineWidth: 1.5, emoji: '🚃' },
+]
+
+// 急行下り（和光市→渋谷）
+// 地下鉄成増・地下鉄赤塚・平和台・氷川台・千川・要町・雑司が谷・西早稲田・東新宿・北参道 は通過補間
+const fukuExpDown = [
+  ['和光市',0], ['小竹向原',10], ['池袋',19], ['新宿三丁目',29], ['明治神宮前',35], ['渋谷',40],
+]
+// 急行上り
+const fukuExpUp = [
+  ['渋谷',0], ['明治神宮前',6], ['新宿三丁目',12], ['池袋',22], ['小竹向原',31], ['和光市',41],
+]
+// 各停下り（全駅）
+const fukuLocalDown = [
+  ['和光市',0], ['地下鉄成増',4], ['地下鉄赤塚',7], ['平和台',10], ['氷川台',13],
+  ['小竹向原',17], ['千川',20], ['要町',23], ['池袋',27], ['雑司が谷',31],
+  ['西早稲田',35], ['東新宿',39], ['新宿三丁目',43], ['北参道',47], ['明治神宮前',51], ['渋谷',56],
+]
+// 各停上り
+const fukuLocalUp = [
+  ['渋谷',0], ['明治神宮前',5], ['北参道',9], ['新宿三丁目',13], ['東新宿',17],
+  ['西早稲田',21], ['雑司が谷',25], ['池袋',29], ['要町',33], ['千川',36],
+  ['小竹向原',39], ['氷川台',43], ['平和台',46], ['地下鉄赤塚',49], ['地下鉄成増',52], ['和光市',56],
+]
+// S-TRAIN下り（小竹向原→渋谷）
+// 西武池袋線から小竹向原で副都心線に入る有料特急
+// 地下鉄成増〜氷川台・千川・要町・雑司が谷 等は通過補間
+const sTrainDown = [
+  ['小竹向原',0], ['池袋',9], ['新宿三丁目',19], ['渋谷',25],
+]
+// S-TRAIN上り
+const sTrainUp = [
+  ['渋谷',0], ['新宿三丁目',7], ['池袋',17], ['小竹向原',26],
+]
+
+const fukutoshinTrains = [
+  // S-TRAIN（土休日ダイヤ想定・1時間に1本）
+  ...makeTrains('st-down', 'S-TRAIN', 's-train', 'down',
+    range(7*60, 21*60, 60), sTrainDown),
+  ...makeTrains('st-up', 'S-TRAIN', 's-train', 'up',
+    range(7*60+30, 21*60, 60), sTrainUp),
+  // 急行（終日・10分間隔）
+  ...makeTrains('exp-down', '急行', 'express', 'down',
+    range(6*60, 22*60, 10), fukuExpDown),
+  ...makeTrains('exp-up', '急行', 'express', 'up',
+    range(6*60, 22*60, 10), fukuExpUp),
+  // 各停（終日・5分間隔）
+  ...makeTrains('l-down', '各停', 'local', 'down',
+    range(6*60, 22*60, 5), fukuLocalDown),
+  ...makeTrains('l-up', '各停', 'local', 'up',
+    range(6*60, 22*60, 5), fukuLocalUp),
+]
+
+// ─── JR山手線 ─────────────────────────────────────────────
+// 環状線のため大崎〜品川（内回り方向順）を1路線として表現
+// 内回り = down（大崎→渋谷→新宿→池袋→上野→東京→品川）
+// 外回り = up （品川→東京→上野→池袋→新宿→渋谷→大崎）
+
+const yamanoteStations = [
+  { name: '大崎',           distance: 0.0 },
+  { name: '五反田',         distance: 1.5 },
+  { name: '目黒',           distance: 3.0 },
+  { name: '恵比寿',         distance: 4.5 },
+  { name: '渋谷',           distance: 5.9 },
+  { name: '原宿',           distance: 7.3 },
+  { name: '代々木',         distance: 8.7 },
+  { name: '新宿',           distance: 10.0 },
+  { name: '新大久保',       distance: 11.3 },
+  { name: '高田馬場',       distance: 12.6 },
+  { name: '目白',           distance: 13.9 },
+  { name: '池袋',           distance: 15.2 },
+  { name: '大塚',           distance: 16.9 },
+  { name: '巣鴨',           distance: 18.1 },
+  { name: '駒込',           distance: 19.3 },
+  { name: '田端',           distance: 20.8 },
+  { name: '西日暮里',       distance: 21.9 },
+  { name: '日暮里',         distance: 22.9 },
+  { name: '鶯谷',           distance: 23.9 },
+  { name: '上野',           distance: 24.9 },
+  { name: '御徒町',         distance: 26.0 },
+  { name: '秋葉原',         distance: 27.1 },
+  { name: '神田',           distance: 28.2 },
+  { name: '東京',           distance: 29.4 },
+  { name: '有楽町',         distance: 30.5 },
+  { name: '新橋',           distance: 31.8 },
+  { name: '浜松町',         distance: 33.2 },
+  { name: '田町',           distance: 34.7 },
+  { name: '高輪ゲートウェイ', distance: 35.8 },
+  { name: '品川',           distance: 37.0 },
+]
+
+const yamanoteTypes = [
+  { id: 'yamanote', name: '山手線', color: '#9ACD32', lineWidth: 2.0, emoji: '🔄' },
+]
+
+// 内回り（全駅停車・大崎→品川）
+const yamanoteInner = [
+  ['大崎',0],['五反田',2],['目黒',5],['恵比寿',7],['渋谷',10],
+  ['原宿',13],['代々木',15],['新宿',18],['新大久保',20],['高田馬場',22],
+  ['目白',24],['池袋',26],['大塚',29],['巣鴨',31],['駒込',34],
+  ['田端',37],['西日暮里',39],['日暮里',41],['鶯谷',43],['上野',46],
+  ['御徒町',48],['秋葉原',50],['神田',52],['東京',55],['有楽町',57],
+  ['新橋',60],['浜松町',63],['田町',66],['高輪ゲートウェイ',69],['品川',72],
+]
+// 外回り（全駅停車・品川→大崎）
+const yamanoteOuter = [
+  ['品川',0],['高輪ゲートウェイ',4],['田町',7],['浜松町',9],['新橋',12],
+  ['有楽町',15],['東京',17],['神田',19],['秋葉原',21],['御徒町',24],
+  ['上野',26],['鶯谷',29],['日暮里',31],['西日暮里',33],['田端',35],
+  ['駒込',38],['巣鴨',40],['大塚',43],['池袋',46],['目白',48],
+  ['高田馬場',50],['新大久保',52],['新宿',54],['代々木',57],['原宿',59],
+  ['渋谷',62],['恵比寿',66],['目黒',68],['五反田',71],['大崎',73],
+]
+
+const yamanoteTrains = [
+  // 内回り（終日・4分間隔）
+  ...makeTrains('inner', '内回り', 'yamanote', 'down',
+    range(6*60, 22*60, 4), yamanoteInner),
+  // 外回り（終日・4分間隔）
+  ...makeTrains('outer', '外回り', 'yamanote', 'up',
+    range(6*60, 22*60, 4), yamanoteOuter),
+]
+
 // ─── JSON書き出し ────────────────────────────────────────
 
 const files = [
@@ -563,6 +714,14 @@ const files = [
   {
     path: path.join(dataDir, 'tohoku-shinkansen.json'),
     data: { lineName: '東北新幹線', stations: tohokuStations, trainTypes: tohokuTypes, trains: tohokuTrains },
+  },
+  {
+    path: path.join(dataDir, 'metro-fukutoshin-line.json'),
+    data: { lineName: '東京メトロ副都心線', stations: fukutoshinStations, trainTypes: fukutoshinTypes, trains: fukutoshinTrains },
+  },
+  {
+    path: path.join(dataDir, 'jr-yamanote-line.json'),
+    data: { lineName: 'JR山手線', stations: yamanoteStations, trainTypes: yamanoteTypes, trains: yamanoteTrains },
   },
 ]
 

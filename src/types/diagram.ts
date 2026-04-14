@@ -170,4 +170,4 @@ export interface TouchPoint {
 export type InteractionPhase = 'idle' | 'possibleTap' | 'panning' | 'pinching'
 
 /** アプリ全体のデータセット識別子 */
-export type DatasetId = 'tokaido' | 'chuo' | 'tobu-tojo' | 'seibu-ikebukuro' | 'jr-saikyo' | 'metro-yurakucho' | 'tohoku-shinkansen' | 'fukutoshin' | 'yamanote' | 'custom'
+export type DatasetId = 'chuo' | 'tobu-tojo' | 'seibu-ikebukuro' | 'jr-saikyo' | 'metro-yurakucho' | 'fukutoshin' | 'yamanote' | 'custom'

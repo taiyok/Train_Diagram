@@ -10,8 +10,6 @@ import { DataSwitcher } from '../controls/DataSwitcher'
 import { FileUploadButton } from '../controls/FileUploadButton'
 import { useFileUpload } from '../../hooks/useFileUpload'
 import type { DatasetId, DiagramDataRaw } from '../../types/diagram'
-import tokaidoData from '../../data/tokaido-shinkansen.json'
-import tohokuData from '../../data/tohoku-shinkansen.json'
 import yamanoteData from '../../data/jr-yamanote-line.json'
 import chuoData from '../../data/chuo-line.json'
 import tobuTojoData from '../../data/tobu-tojo-line.json'
@@ -40,8 +38,6 @@ export function FilterBar() {
   const handleDatasetChange = useCallback(
     (id: DatasetId) => {
       const dataMap: Record<string, unknown> = {
-        tokaido: tokaidoData,
-        'tohoku-shinkansen': tohokuData,
         yamanote: yamanoteData,
         chuo: chuoData,
         'tobu-tojo': tobuTojoData,
@@ -50,7 +46,7 @@ export function FilterBar() {
         fukutoshin: fukutoshinData,
         'metro-yurakucho': metroYurakuchoData,
       }
-      const data = dataMap[id] ?? tokaidoData
+      const data = dataMap[id] ?? yamanoteData
       loadData(data as DiagramDataRaw, id, viewport.canvasWidth, viewport.canvasHeight)
     },
     [loadData, viewport.canvasWidth, viewport.canvasHeight],

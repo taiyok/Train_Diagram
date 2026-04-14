@@ -102,7 +102,7 @@ const MAX_SCALE_Y = 10    // ピクセル/km
 
 export const useDiagramStore = create<DiagramStore>((set, _get) => ({
   // --- 初期状態 ---
-  activeDataset: 'tokaido',
+  activeDataset: 'yamanote',
   lineName: '',
   stations: [],
   trainTypes: new Map(),

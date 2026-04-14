@@ -18,7 +18,7 @@ import { StationAxisPanel, STATION_PANEL_WIDTH } from './components/layout/Stati
 import { TimeAxisPanel, TIME_PANEL_HEIGHT } from './components/layout/TimeAxisPanel'
 import { FilterBar } from './components/layout/FilterBar'
 import type { DiagramDataRaw } from './types/diagram'
-import tokaidoData from './data/tokaido-shinkansen.json'
+import yamanoteData from './data/jr-yamanote-line.json'
 
 export default function App() {
   const loadData = useDiagramStore((s) => s.loadData)
@@ -31,7 +31,7 @@ export default function App() {
     // Canvas サイズが確定する前のデフォルト値で初期化（ResizeObserver がすぐに正確な値に更新する）
     // TITLE_BAR_HEIGHT: タイトルバーの概算高さ（minHeight: 44px）
     const TITLE_BAR_HEIGHT = 44
-    loadData(tokaidoData as DiagramDataRaw, 'tokaido', window.innerWidth - STATION_PANEL_WIDTH, window.innerHeight - TIME_PANEL_HEIGHT - TITLE_BAR_HEIGHT)
+    loadData(yamanoteData as DiagramDataRaw, 'yamanote', window.innerWidth - STATION_PANEL_WIDTH, window.innerHeight - TIME_PANEL_HEIGHT - TITLE_BAR_HEIGHT)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

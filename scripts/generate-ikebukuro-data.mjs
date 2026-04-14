@@ -325,6 +325,18 @@ const saikyoTypes = [
   { id: 'commuter-rapid',  name: '通勤快速',       color: '#E56B10', lineWidth: 2.5, emoji: '🚇' },
   { id: 'rapid',           name: '快速',           color: '#2E7D32', lineWidth: 2.0, emoji: '🚋' },
   { id: 'local',           name: '各駅停車',       color: '#1565C0', lineWidth: 1.5, emoji: '🚃' },
+  // 貨物列車：山手貨物線（埼京線と同じ線路）を通過するEF65・EH500などの機関車
+  // 池袋の旅客ホームには停まらず通過 → タイムテーブルに池袋なし → 補間で通過スジ表示
+  { id: 'freight',         name: '貨物列車',       color: '#8B4513', lineWidth: 3.0, emoji: '🚂' },
+]
+
+// 貨物列車（大崎〜大宮を通過、池袋は旅客ホームに停まらない）
+// 途中の客駅はすべて補間通過スジとして描画される
+const freightDown = [
+  ['大崎',0], ['大宮',48],
+]
+const freightUp = [
+  ['大宮',0], ['大崎',50],
 ]
 
 // 湘南新宿ライン（埼京線と同じ軌道を大崎〜大宮で共用）
@@ -391,6 +403,12 @@ const saikyoTrains = [
     range(6*60, 22*60, 10), saikyoLocalDown),
   ...makeTrains('l-up', '各停', 'local', 'up',
     range(6*60, 22*60, 10), saikyoLocalUp),
+  // 貨物列車（EF65・EH500などの機関車）
+  // 時刻は実態に基づく参考値。1日数本が不定期に通過
+  ...makeTrains('freight-down', '貨物列車', 'freight', 'down',
+    [6*60+15, 9*60+40, 13*60+25, 16*60+50, 20*60+10], freightDown),
+  ...makeTrains('freight-up', '貨物列車', 'freight', 'up',
+    [7*60+30, 11*60+5, 14*60+55, 18*60+20, 21*60+35], freightUp),
 ]
 
 // ─── 東京メトロ有楽町線 ──────────────────────────────────

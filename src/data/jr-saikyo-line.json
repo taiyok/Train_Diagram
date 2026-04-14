@@ -134,6 +134,13 @@
       "color": "#1565C0",
       "lineWidth": 1.5,
       "emoji": "🚃"
+    },
+    {
+      "id": "freight",
+      "name": "貨物列車",
+      "color": "#8B4513",
+      "lineWidth": 3,
+      "emoji": "🚂"
     }
   ],
   "trains": [
@@ -31022,6 +31029,166 @@
         {
           "station": "大崎",
           "arrival": "22:37"
+        }
+      ]
+    },
+    {
+      "id": "freight-down-1",
+      "name": "貨物列車0615",
+      "typeId": "freight",
+      "direction": "down",
+      "timetable": [
+        {
+          "station": "大崎",
+          "departure": "06:15"
+        },
+        {
+          "station": "大宮",
+          "arrival": "07:03"
+        }
+      ]
+    },
+    {
+      "id": "freight-down-2",
+      "name": "貨物列車0940",
+      "typeId": "freight",
+      "direction": "down",
+      "timetable": [
+        {
+          "station": "大崎",
+          "departure": "09:40"
+        },
+        {
+          "station": "大宮",
+          "arrival": "10:28"
+        }
+      ]
+    },
+    {
+      "id": "freight-down-3",
+      "name": "貨物列車1325",
+      "typeId": "freight",
+      "direction": "down",
+      "timetable": [
+        {
+          "station": "大崎",
+          "departure": "13:25"
+        },
+        {
+          "station": "大宮",
+          "arrival": "14:13"
+        }
+      ]
+    },
+    {
+      "id": "freight-down-4",
+      "name": "貨物列車1650",
+      "typeId": "freight",
+      "direction": "down",
+      "timetable": [
+        {
+          "station": "大崎",
+          "departure": "16:50"
+        },
+        {
+          "station": "大宮",
+          "arrival": "17:38"
+        }
+      ]
+    },
+    {
+      "id": "freight-down-5",
+      "name": "貨物列車2010",
+      "typeId": "freight",
+      "direction": "down",
+      "timetable": [
+        {
+          "station": "大崎",
+          "departure": "20:10"
+        },
+        {
+          "station": "大宮",
+          "arrival": "20:58"
+        }
+      ]
+    },
+    {
+      "id": "freight-up-1",
+      "name": "貨物列車0730",
+      "typeId": "freight",
+      "direction": "up",
+      "timetable": [
+        {
+          "station": "大宮",
+          "departure": "07:30"
+        },
+        {
+          "station": "大崎",
+          "arrival": "08:20"
+        }
+      ]
+    },
+    {
+      "id": "freight-up-2",
+      "name": "貨物列車1105",
+      "typeId": "freight",
+      "direction": "up",
+      "timetable": [
+        {
+          "station": "大宮",
+          "departure": "11:05"
+        },
+        {
+          "station": "大崎",
+          "arrival": "11:55"
+        }
+      ]
+    },
+    {
+      "id": "freight-up-3",
+      "name": "貨物列車1455",
+      "typeId": "freight",
+      "direction": "up",
+      "timetable": [
+        {
+          "station": "大宮",
+          "departure": "14:55"
+        },
+        {
+          "station": "大崎",
+          "arrival": "15:45"
+        }
+      ]
+    },
+    {
+      "id": "freight-up-4",
+      "name": "貨物列車1820",
+      "typeId": "freight",
+      "direction": "up",
+      "timetable": [
+        {
+          "station": "大宮",
+          "departure": "18:20"
+        },
+        {
+          "station": "大崎",
+          "arrival": "19:10"
+        }
+      ]
+    },
+    {
+      "id": "freight-up-5",
+      "name": "貨物列車2135",
+      "typeId": "freight",
+      "direction": "up",
+      "timetable": [
+        {
+          "station": "大宮",
+          "departure": "21:35"
+        },
+        {
+          "station": "大崎",
+          "arrival": "22:25"
         }
       ]
     }

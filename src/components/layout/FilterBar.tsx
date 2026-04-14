@@ -34,7 +34,7 @@ export function FilterBar() {
   // フィルターが1種別だけ有効かどうか（「でんしゃをさがそう！」モード）
   const activeCount = Object.values(filterState).filter(Boolean).length
   const totalCount = trainTypes.size
-  const isSearchMode = activeCount > 0 && activeCount < totalCount
+  const isSearchMode = activeCount === 1 && totalCount > 1
 
   // 路線切り替え
   const handleDatasetChange = useCallback(

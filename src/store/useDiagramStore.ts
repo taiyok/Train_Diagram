@@ -14,7 +14,7 @@ import type {
   TrainType,
 } from '../types/diagram'
 import { processData, parseTime } from '../utils/interpolation'
-import { createInitialViewport } from '../utils/coordinateUtils'
+import { createTimeWindowViewport } from '../utils/coordinateUtils'
 
 /** アプリ全体の状態型 */
 interface DiagramState {
@@ -76,6 +76,9 @@ interface DiagramActions {
   /** タップポップアップをセットする */
   setPopup: (info: PopupInfo | null) => void
 
+  /** ビューポートを現在時刻中心の3時間窓にリセットする */
+  resetViewport: () => void
+
   /** Canvasのサイズを更新する */
   setCanvasSize: (width: number, height: number) => void
 }
@@ -125,16 +128,16 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
         if (train.endMinutes > maxTime) maxTime = train.endMinutes
       }
 
-      // デフォルト表示範囲: 6時〜22時
-      const startHour = isFinite(minTime) ? Math.floor(minTime / 60) : 6
-      const endHour = isFinite(maxTime) ? Math.ceil(maxTime / 60) : 22
+      const dataStartMinutes = isFinite(minTime) ? minTime : 360
+      const dataEndMinutes = isFinite(maxTime) ? maxTime : 1320
 
-      const viewport = createInitialViewport(
+      // 現在時刻を中心に3時間窓で初期ビューポートを設定
+      const viewport = createTimeWindowViewport(
         canvasWidth,
         canvasHeight,
         totalKm,
-        startHour,
-        endHour,
+        dataStartMinutes,
+        dataEndMinutes,
       )
 
       // フィルター初期状態（全種別を表示）
@@ -238,6 +241,33 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
 
   setPopup: (info) => {
     set({ popupInfo: info })
+  },
+
+  resetViewport: () => {
+    set((state) => {
+      const { stations, trains, viewport } = state
+      const totalKm =
+        stations.length > 0 ? Math.max(...stations.map((s) => s.distance)) : 600
+
+      let minTime = Infinity
+      let maxTime = -Infinity
+      for (const train of trains) {
+        if (train.startMinutes < minTime) minTime = train.startMinutes
+        if (train.endMinutes > maxTime) maxTime = train.endMinutes
+      }
+
+      const dataStartMinutes = isFinite(minTime) ? minTime : 360
+      const dataEndMinutes = isFinite(maxTime) ? maxTime : 1320
+
+      const newViewport = createTimeWindowViewport(
+        viewport.canvasWidth,
+        viewport.canvasHeight,
+        totalKm,
+        dataStartMinutes,
+        dataEndMinutes,
+      )
+      return { viewport: newViewport, popupInfo: null }
+    })
   },
 
   setCanvasSize: (width, height) => {

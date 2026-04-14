@@ -24,6 +24,7 @@ export default function App() {
   const loadData = useDiagramStore((s) => s.loadData)
   const lineName = useDiagramStore((s) => s.lineName)
   const errorMessage = useDiagramStore((s) => s.errorMessage)
+  const resetViewport = useDiagramStore((s) => s.resetViewport)
 
   // 初回起動時に東海道新幹線のサンプルデータを読み込む
   useEffect(() => {
@@ -66,6 +67,27 @@ export default function App() {
             {lineName}
           </span>
         )}
+        {/* 現在時刻にもどるボタン */}
+        <button
+          onClick={resetViewport}
+          className="ml-auto active:scale-95 transition-transform"
+          style={{
+            backgroundColor: 'rgba(255,255,255,0.2)',
+            color: 'white',
+            fontFamily: '"M PLUS Rounded 1c", sans-serif',
+            fontWeight: 'bold',
+            fontSize: 13,
+            padding: '4px 12px',
+            borderRadius: 9999,
+            minHeight: 32,
+            border: 'none',
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+          }}
+          aria-label="現在時刻の表示にもどる"
+        >
+          🕐 いまを見る
+        </button>
       </div>
 
       {/* エラー表示 */}

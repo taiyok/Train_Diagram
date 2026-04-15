@@ -57,6 +57,7 @@ export function getVisibleKmRange(vp: ViewportState): {
 /**
  * 東海道新幹線用の初期ビューポートを計算する。
  * 表示範囲: 6:00〜22:00（16時間）、東京〜新大阪（552.6km）
+ * @deprecated createTimeWindowViewport を使うこと
  */
 export function createInitialViewport(
   canvasWidth: number,
@@ -70,6 +71,48 @@ export function createInitialViewport(
     panMinutes: startHour * 60,
     panKm: 0,
     scaleX: canvasWidth / totalMinutes,
+    scaleY: canvasHeight / totalKm,
+    canvasWidth,
+    canvasHeight,
+  }
+}
+
+/**
+ * 現在時刻を中心に3時間窓のビューポートを計算する。
+ * 高頻度路線（埼京線・山手線など）でも列車スジが視認できるズームレベルに調整される。
+ *
+ * @param canvasWidth  キャンバス幅（ピクセル）
+ * @param canvasHeight キャンバス高さ（ピクセル）
+ * @param totalKm      路線の総距離（km）
+ * @param dataStartMinutes データの最早時刻（0時からの経過分）
+ * @param dataEndMinutes   データの最遅時刻（0時からの経過分）
+ */
+export function createTimeWindowViewport(
+  canvasWidth: number,
+  canvasHeight: number,
+  totalKm: number,
+  dataStartMinutes: number,
+  dataEndMinutes: number,
+): ViewportState {
+  /** 表示する時間幅（分）: 3時間 */
+  const WINDOW_MINUTES = 180
+
+  const now = new Date()
+  const currentMinutes = now.getHours() * 60 + now.getMinutes()
+
+  // 現在時刻がデータ範囲内に収まるようクランプ
+  const clampedCurrent = Math.max(dataStartMinutes, Math.min(dataEndMinutes, currentMinutes))
+
+  // 現在時刻を中心に3時間窓を設定し、データ範囲外に出ないよう調整
+  const windowStart = Math.max(
+    dataStartMinutes,
+    Math.min(dataEndMinutes - WINDOW_MINUTES, clampedCurrent - WINDOW_MINUTES / 2),
+  )
+
+  return {
+    panMinutes: windowStart,
+    panKm: 0,
+    scaleX: canvasWidth / WINDOW_MINUTES,
     scaleY: canvasHeight / totalKm,
     canvasWidth,
     canvasHeight,

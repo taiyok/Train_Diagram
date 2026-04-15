@@ -23,6 +23,7 @@ export function DiagramCanvas() {
   const trains = useDiagramStore((s) => s.trains)
   const viewport = useDiagramStore((s) => s.viewport)
   const filterState = useDiagramStore((s) => s.filterState)
+  const anchorStation = useDiagramStore((s) => s.anchorStation)
   const setCanvasSize = useDiagramStore((s) => s.setCanvasSize)
   const setPopup = useDiagramStore((s) => s.setPopup)
 
@@ -87,8 +88,9 @@ export function DiagramCanvas() {
       filterState,
       currentMinutes,
       highlightTypeId,
+      anchorStation,
     )
-  }, [trains, viewport, filterState, currentMinutes, highlightTypeId])
+  }, [trains, viewport, filterState, currentMinutes, highlightTypeId, anchorStation])
 
   // --- タップハンドラー ---
   const handleTap = useCallback(

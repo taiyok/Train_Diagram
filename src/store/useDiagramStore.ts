@@ -14,7 +14,7 @@ import type {
   TrainType,
 } from '../types/diagram'
 import { processData, parseTime } from '../utils/interpolation'
-import { createInitialViewport } from '../utils/coordinateUtils'
+import { createTimeWindowViewport } from '../utils/coordinateUtils'
 
 /** アプリ全体の状態型 */
 interface DiagramState {
@@ -41,6 +41,9 @@ interface DiagramState {
 
   /** タップ時のポップアップ情報 */
   popupInfo: PopupInfo | null
+
+  /** 選択中の主軸駅（縦方向の中心に表示・強調） */
+  anchorStation: Station | null
 
   /** データ読み込み中フラグ */
   isLoading: boolean
@@ -76,6 +79,15 @@ interface DiagramActions {
   /** タップポップアップをセットする */
   setPopup: (info: PopupInfo | null) => void
 
+  /**
+   * 主軸駅を選択し、その駅が画面の縦中心に来るようビューポートをパンする。
+   * null を渡すと選択解除。
+   */
+  setAnchorStation: (station: Station | null) => void
+
+  /** ビューポートを現在時刻中心の3時間窓にリセットする */
+  resetViewport: () => void
+
   /** Canvasのサイズを更新する */
   setCanvasSize: (width: number, height: number) => void
 }
@@ -90,7 +102,7 @@ const MAX_SCALE_Y = 10    // ピクセル/km
 
 export const useDiagramStore = create<DiagramStore>((set, _get) => ({
   // --- 初期状態 ---
-  activeDataset: 'tokaido',
+  activeDataset: 'yamanote',
   lineName: '',
   stations: [],
   trainTypes: new Map(),
@@ -105,6 +117,7 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
   },
   filterState: {},
   popupInfo: null,
+  anchorStation: null,
   isLoading: false,
   errorMessage: null,
 
@@ -125,16 +138,16 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
         if (train.endMinutes > maxTime) maxTime = train.endMinutes
       }
 
-      // デフォルト表示範囲: 6時〜22時
-      const startHour = isFinite(minTime) ? Math.floor(minTime / 60) : 6
-      const endHour = isFinite(maxTime) ? Math.ceil(maxTime / 60) : 22
+      const dataStartMinutes = isFinite(minTime) ? minTime : 360
+      const dataEndMinutes = isFinite(maxTime) ? maxTime : 1320
 
-      const viewport = createInitialViewport(
+      // 現在時刻を中心に3時間窓で初期ビューポートを設定
+      const viewport = createTimeWindowViewport(
         canvasWidth,
         canvasHeight,
         totalKm,
-        startHour,
-        endHour,
+        dataStartMinutes,
+        dataEndMinutes,
       )
 
       // フィルター初期状態（全種別を表示）
@@ -152,6 +165,7 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
         viewport,
         filterState,
         popupInfo: null,
+        anchorStation: null,
         errorMessage: null,
       })
     } catch (err) {
@@ -238,6 +252,55 @@ export const useDiagramStore = create<DiagramStore>((set, _get) => ({
 
   setPopup: (info) => {
     set({ popupInfo: info })
+  },
+
+  setAnchorStation: (station) => {
+    set((state) => {
+      if (!station) return { anchorStation: null }
+
+      const { viewport, stations } = state
+      const totalKm =
+        stations.length > 0 ? Math.max(...stations.map((s) => s.distance)) : 600
+
+      // 選択駅が縦方向の中心に来るようにパン
+      const visibleKm = viewport.canvasHeight / viewport.scaleY
+      const newPanKm = Math.max(
+        0,
+        Math.min(totalKm - visibleKm, station.distance - visibleKm / 2),
+      )
+
+      return {
+        anchorStation: station,
+        viewport: { ...viewport, panKm: newPanKm },
+      }
+    })
+  },
+
+  resetViewport: () => {
+    set((state) => {
+      const { stations, trains, viewport } = state
+      const totalKm =
+        stations.length > 0 ? Math.max(...stations.map((s) => s.distance)) : 600
+
+      let minTime = Infinity
+      let maxTime = -Infinity
+      for (const train of trains) {
+        if (train.startMinutes < minTime) minTime = train.startMinutes
+        if (train.endMinutes > maxTime) maxTime = train.endMinutes
+      }
+
+      const dataStartMinutes = isFinite(minTime) ? minTime : 360
+      const dataEndMinutes = isFinite(maxTime) ? maxTime : 1320
+
+      const newViewport = createTimeWindowViewport(
+        viewport.canvasWidth,
+        viewport.canvasHeight,
+        totalKm,
+        dataStartMinutes,
+        dataEndMinutes,
+      )
+      return { viewport: newViewport, popupInfo: null }
+    })
   },
 
   setCanvasSize: (width, height) => {

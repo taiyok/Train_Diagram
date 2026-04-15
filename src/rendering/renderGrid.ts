@@ -7,6 +7,9 @@
 import type { Station, ViewportState } from '../types/diagram'
 import { worldXToScreen, worldYToScreen } from '../utils/coordinateUtils'
 
+/** 主軸駅のハイライト色 */
+const ANCHOR_LINE_COLOR = '#F97316'  // オレンジ
+
 /**
  * 現在のズームレベルに適した時刻グリッド間隔（分）を返す
  */
@@ -20,6 +23,7 @@ export function getTimeGridInterval(scaleX: number): number {
 
 /**
  * ダイヤグラムのグリッドを描画する
+ * @param anchorStation 選択中の主軸駅（null = 未選択）
  */
 export function renderGrid(
   ctx: CanvasRenderingContext2D,
@@ -27,6 +31,7 @@ export function renderGrid(
   viewport: ViewportState,
   timeRangeStart: number, // 表示開始時刻（分）
   timeRangeEnd: number,   // 表示終了時刻（分）
+  anchorStation: Station | null = null,
 ): void {
   const { canvasWidth, canvasHeight } = viewport
 
@@ -36,9 +41,22 @@ export function renderGrid(
     const y = worldYToScreen(station.distance, viewport)
     if (y < -1 || y > canvasHeight + 1) continue
 
-    ctx.strokeStyle = '#CBD5E1'  // スレートグレー
-    ctx.lineWidth = 1
-    ctx.setLineDash([])
+    const isAnchor = anchorStation?.name === station.name
+
+    if (isAnchor) {
+      // 主軸駅: 半透明の帯 + オレンジの実線
+      ctx.fillStyle = 'rgba(249, 115, 22, 0.08)'
+      ctx.fillRect(0, y - 12, canvasWidth, 24)
+
+      ctx.strokeStyle = ANCHOR_LINE_COLOR
+      ctx.lineWidth = 2
+      ctx.setLineDash([])
+    } else {
+      ctx.strokeStyle = '#CBD5E1'  // スレートグレー
+      ctx.lineWidth = 1
+      ctx.setLineDash([])
+    }
+
     ctx.beginPath()
     ctx.moveTo(0, y)
     ctx.lineTo(canvasWidth, y)

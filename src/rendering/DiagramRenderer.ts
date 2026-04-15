@@ -23,6 +23,7 @@ export class DiagramRenderer {
   private filterState: FilterState = {}
   private currentMinutes = 0
   private highlightTypeId: string | null = null
+  private anchorStation: Station | null = null
 
   // update() 時に一度だけ計算して保持（フレームごとの再計算を避ける）
   private allStations: Station[] = []
@@ -53,6 +54,7 @@ export class DiagramRenderer {
     filterState: FilterState,
     currentMinutes: number,
     highlightTypeId: string | null,
+    anchorStation: Station | null,
   ): void {
     // 列車データが変わったときだけ駅配列を再計算する（フレームごとの再計算を避ける）
     if (trains !== this.trains || this.allStations.length === 0) {
@@ -70,6 +72,7 @@ export class DiagramRenderer {
     this.filterState = filterState
     this.currentMinutes = currentMinutes
     this.highlightTypeId = highlightTypeId
+    this.anchorStation = anchorStation
 
     this.markDirty()
   }
@@ -125,7 +128,7 @@ export class DiagramRenderer {
     const timeEnd = viewport.panMinutes + canvasWidth / viewport.scaleX
 
     // 1. グリッド描画（駅配列は update() 時に計算済み）
-    renderGrid(ctx, this.allStations, viewport, timeStart, timeEnd)
+    renderGrid(ctx, this.allStations, viewport, timeStart, timeEnd, this.anchorStation)
 
     // 2. 現在時刻マーカー
     renderCurrentTime(ctx, this.currentMinutes, viewport)

@@ -18,19 +18,20 @@ import { StationAxisPanel, STATION_PANEL_WIDTH } from './components/layout/Stati
 import { TimeAxisPanel, TIME_PANEL_HEIGHT } from './components/layout/TimeAxisPanel'
 import { FilterBar } from './components/layout/FilterBar'
 import type { DiagramDataRaw } from './types/diagram'
-import tokaidoData from './data/tokaido-shinkansen.json'
+import yamanoteData from './data/jr-yamanote-line.json'
 
 export default function App() {
   const loadData = useDiagramStore((s) => s.loadData)
   const lineName = useDiagramStore((s) => s.lineName)
   const errorMessage = useDiagramStore((s) => s.errorMessage)
+  const resetViewport = useDiagramStore((s) => s.resetViewport)
 
   // 初回起動時に東海道新幹線のサンプルデータを読み込む
   useEffect(() => {
     // Canvas サイズが確定する前のデフォルト値で初期化（ResizeObserver がすぐに正確な値に更新する）
     // TITLE_BAR_HEIGHT: タイトルバーの概算高さ（minHeight: 44px）
     const TITLE_BAR_HEIGHT = 44
-    loadData(tokaidoData as DiagramDataRaw, 'tokaido', window.innerWidth - STATION_PANEL_WIDTH, window.innerHeight - TIME_PANEL_HEIGHT - TITLE_BAR_HEIGHT)
+    loadData(yamanoteData as DiagramDataRaw, 'yamanote', window.innerWidth - STATION_PANEL_WIDTH, window.innerHeight - TIME_PANEL_HEIGHT - TITLE_BAR_HEIGHT)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -66,6 +67,27 @@ export default function App() {
             {lineName}
           </span>
         )}
+        {/* 現在時刻にもどるボタン */}
+        <button
+          onClick={resetViewport}
+          className="ml-auto active:scale-95 transition-transform"
+          style={{
+            backgroundColor: 'rgba(255,255,255,0.2)',
+            color: 'white',
+            fontFamily: '"M PLUS Rounded 1c", sans-serif',
+            fontWeight: 'bold',
+            fontSize: 13,
+            padding: '4px 12px',
+            borderRadius: 9999,
+            minHeight: 32,
+            border: 'none',
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+          }}
+          aria-label="現在時刻の表示にもどる"
+        >
+          🕐 いまを見る
+        </button>
       </div>
 
       {/* エラー表示 */}

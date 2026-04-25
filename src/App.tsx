@@ -11,12 +11,13 @@
  *   └───────────────────────────────────────┘
  */
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDiagramStore } from './store/useDiagramStore'
 import { DiagramCanvas } from './components/diagram/DiagramCanvas'
 import { StationAxisPanel, STATION_PANEL_WIDTH } from './components/layout/StationAxisPanel'
 import { TimeAxisPanel, TIME_PANEL_HEIGHT } from './components/layout/TimeAxisPanel'
 import { FilterBar } from './components/layout/FilterBar'
+import { DepartureBoardView } from './components/departureboard/DepartureBoardView'
 import type { DiagramDataRaw } from './types/diagram'
 import yamanoteData from './data/jr-yamanote-line.json'
 
@@ -25,6 +26,8 @@ export default function App() {
   const lineName = useDiagramStore((s) => s.lineName)
   const errorMessage = useDiagramStore((s) => s.errorMessage)
   const resetViewport = useDiagramStore((s) => s.resetViewport)
+
+  const [viewMode, setViewMode] = useState<'diagram' | 'board'>('diagram')
 
   // 初回起動時に東海道新幹線のサンプルデータを読み込む
   useEffect(() => {
@@ -67,27 +70,51 @@ export default function App() {
             {lineName}
           </span>
         )}
-        {/* 現在時刻にもどるボタン */}
-        <button
-          onClick={resetViewport}
-          className="ml-auto active:scale-95 transition-transform"
-          style={{
-            backgroundColor: 'rgba(255,255,255,0.2)',
-            color: 'white',
-            fontFamily: '"M PLUS Rounded 1c", sans-serif',
-            fontWeight: 'bold',
-            fontSize: 13,
-            padding: '4px 12px',
-            borderRadius: 9999,
-            minHeight: 32,
-            border: 'none',
-            cursor: 'pointer',
-            whiteSpace: 'nowrap',
-          }}
-          aria-label="現在時刻の表示にもどる"
-        >
-          🕐 いまを見る
-        </button>
+        <div className="ml-auto flex gap-2">
+          {/* 発車標モードボタン */}
+          <button
+            onClick={() => setViewMode('board')}
+            className="active:scale-95 transition-transform"
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.2)',
+              color: 'white',
+              fontFamily: '"M PLUS Rounded 1c", sans-serif',
+              fontWeight: 'bold',
+              fontSize: 13,
+              padding: '4px 12px',
+              borderRadius: 9999,
+              minHeight: 32,
+              border: 'none',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+            aria-label="次の電車を見る"
+          >
+            🚉 つぎの でんしゃ
+          </button>
+
+          {/* 現在時刻にもどるボタン */}
+          <button
+            onClick={resetViewport}
+            className="active:scale-95 transition-transform"
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.2)',
+              color: 'white',
+              fontFamily: '"M PLUS Rounded 1c", sans-serif',
+              fontWeight: 'bold',
+              fontSize: 13,
+              padding: '4px 12px',
+              borderRadius: 9999,
+              minHeight: 32,
+              border: 'none',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+            aria-label="現在時刻の表示にもどる"
+          >
+            🕐 いまを見る
+          </button>
+        </div>
       </div>
 
       {/* エラー表示 */}
@@ -110,6 +137,11 @@ export default function App() {
 
       {/* フィルターバー */}
       <FilterBar />
+
+      {/* 発車標モード（全画面オーバーレイ） */}
+      {viewMode === 'board' && (
+        <DepartureBoardView onClose={() => setViewMode('diagram')} />
+      )}
     </div>
   )
 }

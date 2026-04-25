@@ -164,7 +164,9 @@ export function useCanvasInteraction(
 
         if (lastPinchDistRef.current > 0) {
           const zoomFactor = newDist / lastPinchDistRef.current
-          zoomViewport(zoomFactor, newMid.x, newMid.y)
+          // clientX/Y をCanvas相対座標に変換してからズームアンカーに使う
+          const rect = e.currentTarget.getBoundingClientRect()
+          zoomViewport(zoomFactor, newMid.x - rect.left, newMid.y - rect.top)
         }
 
         // ピンチ中のパン（中点の移動）

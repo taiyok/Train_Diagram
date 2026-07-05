@@ -710,6 +710,115 @@ const yamanoteTrains = [
     range(6*60, 22*60, 4), yamanoteOuter),
 ]
 
+// ─── 日暮里（東京〜大宮 東北本線・京浜東北ルート） ──────────
+// 日暮里は「トレインミュージアム」下御隠殿橋で知られる有名な列車観察スポット。
+// 新幹線・京浜東北線・宇都宮線/高崎線・山手線が並走し、多彩な列車が見られる。
+// 1本の距離軸で表現するため、東京〜大宮を共有する東北本線ルートを採用する。
+//  - 新幹線・宇都宮線/高崎線 … 日暮里は通過（補間で通過スジ）＝日暮里から「見える」列車
+//  - 京浜東北線 … 日暮里に停車
+//  - 山手線 … 東京〜田端で並走（田端で環状線側へ分岐するため区間表示）
+
+const nipporiStations = [
+  { name: '東京',           distance: 0.0 },
+  { name: '神田',           distance: 1.3 },
+  { name: '秋葉原',         distance: 2.0 },
+  { name: '御徒町',         distance: 3.0 },
+  { name: '上野',           distance: 3.6 },
+  { name: '鶯谷',           distance: 4.7 },
+  { name: '日暮里',         distance: 5.8 },   // ← 観察スポット（京浜東北・山手が停車、新幹線・宇都宮線は通過）
+  { name: '西日暮里',       distance: 6.3 },
+  { name: '田端',           distance: 7.1 },
+  { name: '上中里',         distance: 8.0 },
+  { name: '王子',           distance: 8.9 },
+  { name: '東十条',         distance: 10.4 },
+  { name: '赤羽',           distance: 11.6 },
+  { name: '川口',           distance: 13.2 },
+  { name: '西川口',         distance: 15.4 },
+  { name: '蕨',             distance: 17.1 },
+  { name: '南浦和',         distance: 18.9 },
+  { name: '浦和',           distance: 20.6 },
+  { name: '北浦和',         distance: 22.5 },
+  { name: '与野',           distance: 24.2 },
+  { name: 'さいたま新都心', distance: 26.3 },
+  { name: '大宮',           distance: 27.7 },
+]
+
+const nipporiTypes = [
+  // 新幹線（はやぶさ・やまびこ）… 上野〜大宮は日暮里ほか各駅を通過。車窓から見える花形列車
+  { id: 'shinkansen',    name: '新幹線',        color: '#E4007F', lineWidth: 3.5, emoji: '🚄' },
+  // 宇都宮線・高崎線（上野東京ライン）… 日暮里は通過
+  { id: 'utsunomiya',    name: '宇都宮・高崎線', color: '#F68B1E', lineWidth: 2.5, emoji: '🚃' },
+  // 京浜東北線 … 各駅停車（日暮里に停車）
+  { id: 'keihin-tohoku', name: '京浜東北線',     color: '#00A7E1', lineWidth: 2.0, emoji: '🚃' },
+  // 山手線 … 東京〜田端で並走（日暮里・西日暮里を含む）
+  { id: 'yamanote',      name: '山手線',         color: '#9ACD32', lineWidth: 2.0, emoji: '🔄' },
+]
+
+// 新幹線下り（東京→大宮）… 日暮里ほか途中駅はすべて通過（補間で通過スジ表示）
+const nipporiShinkansenDown = [
+  ['東京', 0], ['上野', 4], ['大宮', 25],
+]
+const nipporiShinkansenUp = [
+  ['大宮', 0], ['上野', 21], ['東京', 25],
+]
+
+// 宇都宮・高崎線（上野東京ライン）… 日暮里・田端・王子などは通過
+const nipporiUtsunomiyaDown = [
+  ['東京', 0], ['上野', 6], ['赤羽', 14], ['浦和', 22], ['大宮', 28],
+]
+const nipporiUtsunomiyaUp = [
+  ['大宮', 0], ['浦和', 6], ['赤羽', 14], ['上野', 22], ['東京', 28],
+]
+
+// 京浜東北線（各駅停車）
+const nipporiKeihinDown = [
+  ['東京', 0], ['神田', 2], ['秋葉原', 4], ['御徒町', 6], ['上野', 8],
+  ['鶯谷', 10], ['日暮里', 12], ['西日暮里', 14], ['田端', 16], ['上中里', 18],
+  ['王子', 20], ['東十条', 22], ['赤羽', 24], ['川口', 27], ['西川口', 30],
+  ['蕨', 33], ['南浦和', 36], ['浦和', 39], ['北浦和', 42], ['与野', 44],
+  ['さいたま新都心', 47], ['大宮', 50],
+]
+const nipporiKeihinUp = [
+  ['大宮', 0], ['さいたま新都心', 3], ['与野', 6], ['北浦和', 8], ['浦和', 11],
+  ['南浦和', 14], ['蕨', 17], ['西川口', 20], ['川口', 23], ['赤羽', 26],
+  ['東十条', 28], ['王子', 30], ['上中里', 32], ['田端', 34], ['西日暮里', 36],
+  ['日暮里', 38], ['鶯谷', 40], ['上野', 42], ['御徒町', 44], ['秋葉原', 46],
+  ['神田', 48], ['東京', 50],
+]
+
+// 山手線（東京〜田端で並走。田端で環状線側へ分岐するため区間表示）
+const nipporiYamanoteDown = [
+  ['東京', 0], ['神田', 2], ['秋葉原', 4], ['御徒町', 6], ['上野', 8],
+  ['鶯谷', 10], ['日暮里', 12], ['西日暮里', 14], ['田端', 16],
+]
+const nipporiYamanoteUp = [
+  ['田端', 0], ['西日暮里', 2], ['日暮里', 4], ['鶯谷', 6], ['上野', 8],
+  ['御徒町', 10], ['秋葉原', 12], ['神田', 14], ['東京', 16],
+]
+
+const nipporiTrains = [
+  // 新幹線（東京⇄大宮を12分間隔で通過・停車）
+  ...makeTrains('sk-down', '新幹線', 'shinkansen', 'down',
+    range(6*60, 21*60+30, 12), nipporiShinkansenDown),
+  ...makeTrains('sk-up', '新幹線', 'shinkansen', 'up',
+    range(6*60+6, 21*60+30, 12), nipporiShinkansenUp),
+  // 宇都宮・高崎線（10分間隔）
+  ...makeTrains('ut-down', '宇都宮・高崎線', 'utsunomiya', 'down',
+    range(6*60, 22*60, 10), nipporiUtsunomiyaDown),
+  ...makeTrains('ut-up', '宇都宮・高崎線', 'utsunomiya', 'up',
+    range(6*60+5, 22*60, 10), nipporiUtsunomiyaUp),
+  // 京浜東北線（各駅停車・5分間隔）
+  ...makeTrains('kt-down', '京浜東北線', 'keihin-tohoku', 'down',
+    range(6*60, 22*60, 5), nipporiKeihinDown),
+  ...makeTrains('kt-up', '京浜東北線', 'keihin-tohoku', 'up',
+    range(6*60, 22*60, 5), nipporiKeihinUp),
+  // 山手線（東京〜田端・5分間隔）
+  ...makeTrains('yl-down', '山手線', 'yamanote', 'down',
+    range(6*60, 22*60, 5), nipporiYamanoteDown),
+  ...makeTrains('yl-up', '山手線', 'yamanote', 'up',
+    range(6*60, 22*60, 5), nipporiYamanoteUp),
+]
+
 // ─── JSON書き出し ────────────────────────────────────────
 
 const files = [
@@ -740,6 +849,10 @@ const files = [
   {
     path: path.join(dataDir, 'jr-yamanote-line.json'),
     data: { lineName: 'JR山手線', stations: yamanoteStations, trainTypes: yamanoteTypes, trains: yamanoteTrains },
+  },
+  {
+    path: path.join(dataDir, 'nippori-lines.json'),
+    data: { lineName: '日暮里（見える路線）', stations: nipporiStations, trainTypes: nipporiTypes, trains: nipporiTrains },
   },
 ]
 

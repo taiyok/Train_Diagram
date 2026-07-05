@@ -8,6 +8,7 @@ import { processData } from '../utils/interpolation'
 import type { DiagramDataRaw } from '../types/diagram'
 import tokaidoRaw from '../data/tokaido-shinkansen.json'
 import chuoRaw from '../data/chuo-line.json'
+import nipporiRaw from '../data/nippori-lines.json'
 
 describe('東海道新幹線サンプルデータ', () => {
   const data = tokaidoRaw as DiagramDataRaw
@@ -104,5 +105,45 @@ describe('JR中央線サンプルデータ', () => {
     // 中央特快は四ツ谷・中野・荻窪などを通過する
     const yotsuya = ce1!.resolvedStops.find((s) => s.station.name === '四ツ谷')
     expect(yotsuya!.isScheduledStop).toBe(false)
+  })
+})
+
+describe('日暮里（見える路線）サンプルデータ', () => {
+  const data = nipporiRaw as DiagramDataRaw
+  const { stations, trainTypes, trains } = processData(data)
+
+  it('22駅が読み込まれ、日暮里が含まれる', () => {
+    expect(stations).toHaveLength(22)
+    expect(stations[0]!.name).toBe('東京')
+    expect(stations[stations.length - 1]!.name).toBe('大宮')
+    expect(stations.some((s) => s.name === '日暮里')).toBe(true)
+  })
+
+  it('4種別（新幹線・宇都宮/高崎線・京浜東北線・山手線）が存在する', () => {
+    expect(trainTypes.size).toBe(4)
+    expect(trainTypes.has('shinkansen')).toBe(true)
+    expect(trainTypes.has('utsunomiya')).toBe(true)
+    expect(trainTypes.has('keihin-tohoku')).toBe(true)
+    expect(trainTypes.has('yamanote')).toBe(true)
+  })
+
+  it('新幹線は日暮里を通過する（補間で通過スジ）', () => {
+    const shinkansen = trains.find((t) => t.type.id === 'shinkansen')!
+    const nippori = shinkansen.resolvedStops.find((s) => s.station.name === '日暮里')
+    expect(nippori).toBeDefined()
+    expect(nippori!.isScheduledStop).toBe(false)
+  })
+
+  it('京浜東北線は日暮里に停車する', () => {
+    const keihin = trains.find((t) => t.type.id === 'keihin-tohoku')!
+    const nippori = keihin.resolvedStops.find((s) => s.station.name === '日暮里')
+    expect(nippori).toBeDefined()
+    expect(nippori!.isScheduledStop).toBe(true)
+  })
+
+  it('全列車の startMinutes が endMinutes より小さい', () => {
+    for (const train of trains) {
+      expect(train.startMinutes).toBeLessThan(train.endMinutes)
+    }
   })
 })

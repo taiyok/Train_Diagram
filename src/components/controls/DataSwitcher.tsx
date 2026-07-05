@@ -18,6 +18,7 @@ const DATASETS: { id: DatasetId; label: string; emoji: string }[] = [
   { id: 'seibu-ikebukuro',   label: '西武池袋線',         emoji: '🚋' },
   { id: 'fukutoshin',        label: '副都心線',           emoji: '🚇' },
   { id: 'metro-yurakucho',   label: '有楽町線',           emoji: '🚇' },
+  { id: 'nippori',           label: '日暮里',             emoji: '🚉' },
 ]
 
 export function DataSwitcher({ activeDataset, onChange }: DataSwitcherProps) {

@@ -17,6 +17,7 @@ import seibuIkebukuroData from '../../data/seibu-ikebukuro-line.json'
 import jrSaikyoData from '../../data/jr-saikyo-line.json'
 import fukutoshinData from '../../data/metro-fukutoshin-line.json'
 import metroYurakuchoData from '../../data/metro-yurakucho-line.json'
+import nipporiData from '../../data/nippori-lines.json'
 
 export function FilterBar() {
   const trainTypes = useDiagramStore((s) => s.trainTypes)
@@ -45,6 +46,7 @@ export function FilterBar() {
         'jr-saikyo': jrSaikyoData,
         fukutoshin: fukutoshinData,
         'metro-yurakucho': metroYurakuchoData,
+        nippori: nipporiData,
       }
       const data = dataMap[id] ?? yamanoteData
       loadData(data as DiagramDataRaw, id, viewport.canvasWidth, viewport.canvasHeight)
